@@ -6,9 +6,9 @@ export default defineConfig({
   plugins: [vue(), VitePWA({
     includeAssets: ["favicon.ico", "apple-touch-icon.png", "logo.svg"],
     manifest: {
-      name: "Hide-Pass 🥷🏻",
-      short_name: "Hide-Pass 🥷🏻",
-      description: "Keep your privacy safe✨",
+      name: "Pass-Vault 🥷🏻",
+      short_name: "Pass-Vault 🥷🏻",
+      description: "Secure Passwords for a Secure Life✨",
       theme_color: "#ffffff",
       icons: [
         {
