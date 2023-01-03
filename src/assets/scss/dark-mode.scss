@@ -1,0 +1,19 @@
+html[data-theme="light"] {
+  --text-color: var(--black);
+
+  --primary-color: #1982c4;
+  --secondary-color: #6a4c93;
+  --third-color: #8ac926;
+  --fourth-color: #ffca3a;
+  --fifth-color: #ff595e;
+}
+
+html[data-theme="dark"] {
+  --text-color: var(--white);
+  
+  --primary-color: #005285;
+  --secondary-color: #532b8a;
+  --third-color: #649711;
+  --fourth-color: #ca9912;
+  --fifth-color: #cc3338;
+}

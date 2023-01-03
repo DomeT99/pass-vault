@@ -1,1 +1,12 @@
-@import '../../../node_modules/bootstrap/scss/bootstrap.scss'; //Import Bootstrap CSS
+@import "../../../node_modules/bootstrap/scss/bootstrap.scss"; //Import Bootstrap CSS
+@import "./dark-mode.scss";
+
+:root {
+  --black: #000;
+  --white: #fff;
+  --primary-color: #1982c4;
+  --secondary-color: #6a4c93;
+  --third-color: #8ac926;
+  --fourth-color: #ffca3a;
+  --fifth-color: #ff595e;
+}
