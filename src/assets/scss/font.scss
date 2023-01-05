@@ -1,0 +1,29 @@
+@font-face {
+  font-family: "Lato Light";
+  src: url("../font/Lato-Light.ttf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Lato Regular";
+  src: url("../font/Lato-Regular.ttf");
+  font-style: normal;
+}
+
+
+h1 {
+  font-family: var(--font-regular);
+  font-size: var(--h1-size) !important;
+  color: var(--text-color);
+}
+h2 {
+  font-family: var(--font-regular);
+  font-size: var(--h3-size) !important;
+  color: var(--text-color);
+}
+p {
+  font-family: var(--font-light);
+  font-size: var(--paragraph-size) !important;
+  color: var(--text-color);
+  font-weight: 700;
+}
