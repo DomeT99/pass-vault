@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
   {
-    path: "/sign-in",
+    path: "/",
     name: "sign-in",
     component: () => import('../views/SignIn.vue')
   }
