@@ -3,11 +3,9 @@ import Form from '../components/common/Form.vue';
 import Input from '../components/common/Input.vue';
 import Label from '../components/common/Label.vue';
 import Button from '../components/common/Button.vue';
-import _ from 'lodash';
-
 </script>
 <template>
-  <section :id="_.uniqueId('sec-login-')" class="bg-primary min-vh-100 v-align-center">
+  <section class="bg-primary min-vh-100 v-align-center">
     <article class="row-cols-sm-1">
       <div class="col-sm-12 justify-content-center d-flex">
         <Form>
