@@ -3,9 +3,11 @@ import Form from '../components/common/Form.vue';
 import Input from '../components/common/Input.vue';
 import Label from '../components/common/Label.vue';
 import Button from '../components/common/Button.vue';
+import _ from 'lodash';
+
 </script>
 <template>
-  <section class="bg-primary min-vh-100 v-align-center">
+  <section :id="_.uniqueId('sec-login-')" class="bg-primary min-vh-100 v-align-center">
     <article class="row-cols-sm-1">
       <div class="col-sm-12 justify-content-center d-flex">
         <Form>
@@ -22,7 +24,7 @@ import Button from '../components/common/Button.vue';
             <Input class="form-control" :id="'password-input'" :type="'password'" />
           </div>
           <div class="justify-content-center d-flex">
-            <Button class="btn-fifth  w-100" :prevent-default="true" :type="'submit'">Login</Button>
+            <Button class="btn-fifth w-100" :prevent-default="true" :type="'submit'">Login</Button>
           </div>
         </Form>
       </div>
