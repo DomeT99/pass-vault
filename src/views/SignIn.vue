@@ -22,7 +22,7 @@ import Button from '../components/common/Button.vue';
             <Input class="form-control" :id="'password-input'" :type="'password'" />
           </div>
           <div class="justify-content-center d-flex">
-            <Button class="btn-primary w-100" :prevent-default="true" :type="'submit'">Login</Button>
+            <Button class="btn-fifth  w-100" :prevent-default="true" :type="'submit'">Login</Button>
           </div>
         </Form>
       </div>

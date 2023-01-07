@@ -4,6 +4,19 @@
 }
 
 /*Buttons*/
-/* .btn{
+.btn {
+  &.btn-fifth {
+    background-color: var(--fifth-color);
+    color: var(--white);
+  }
+  &.btn-primary {
+    background-color: var(--primary-color);
+  }
+}
 
-} */
+/*Form*/
+.form-control:focus {
+  border-color: var(--white);
+  outline: 0;
+  box-shadow: none;
+}
