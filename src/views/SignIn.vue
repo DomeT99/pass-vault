@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import Form from '../components/common/Form.vue';
+import Input from '../components/common/Input.vue';
+import Label from '../components/common/Label.vue';
+import Button from '../components/common/Button.vue';
 </script>
 <template>
   <section class="bg-primary min-vh-100 v-align-center">
@@ -7,15 +10,19 @@ import Form from '../components/common/Form.vue';
       <div class="col-sm-12 justify-content-center d-flex">
         <Form>
           <div class="mb-3">
-            <label for="email" class="form-label text-white">Email</label>
-            <input type="email" class="form-control" id="email">
+            <Label :for="'email-input'" class="form-label text-white">
+              Email
+            </Label>
+            <Input class="form-control" :id="'email-input'" :type="'email'" />
           </div>
           <div class="mb-4">
-            <label for="password" class="form-label text-white">Password</label>
-            <input type="password" class="form-control" id="password">
+            <Label :for="'password-input'" class="form-label text-white">
+              Password
+            </Label>
+            <Input class="form-control" :id="'password-input'" :type="'password'" />
           </div>
           <div class="justify-content-center d-flex">
-            <button type="submit" class="btn btn-primary w-100">Submit</button>
+            <Button class="btn-primary w-100" :prevent-default="true" :type="'submit'">Login</Button>
           </div>
         </Form>
       </div>
