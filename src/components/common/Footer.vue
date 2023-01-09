@@ -10,7 +10,7 @@ function openLinkTree() {
 }
 </script>
 <template>
-  <footer class="d-flex justify-content-center py-3 my-4 border-top">
+  <footer class="d-flex justify-content-center py-3 border-top bg-fourth">
     <p @click="openLinkTree" class="pointer">
       &copy; {{ dateNow }} Domenico Tenace
     </p>
@@ -19,5 +19,8 @@ function openLinkTree() {
 <style scoped>
 .pointer {
   cursor: pointer;
+}
+p{
+  font-size: 1.2rem !important;
 }
 </style>
