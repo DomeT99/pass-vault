@@ -20,7 +20,10 @@ function openLinkTree() {
 .pointer {
   cursor: pointer;
 }
-p{
+p {
   font-size: 1.2rem !important;
+}
+.border-top {
+  border-color: #000 !important;
 }
 </style>
