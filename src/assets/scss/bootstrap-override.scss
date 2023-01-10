@@ -10,6 +10,12 @@
   &.btn-fifth {
     background-color: var(--fifth-color);
     color: var(--white);
+
+    &.btn-fifth:active {
+      background-color: var(--fifth-color);
+      color: var(--white);
+      border-color: var(--fifth-color);
+    }
   }
   &.btn-primary {
     background-color: var(--primary-color);
@@ -17,6 +23,16 @@
 }
 
 /*Form*/
+.form-control {
+  &.filter {
+    border: 2px solid var(--fourth-color);
+    &.filter:focus {
+      border: 2px solid var(--fifth-color);
+      outline: 0;
+      box-shadow: none;
+    }
+  }
+}
 .form-control:focus {
   border-color: var(--white);
   outline: 0;
@@ -31,4 +47,9 @@
 }
 .table-bordered {
   border: 2px solid var(--black);
+}
+
+/*Row*/
+.row {
+  margin: 0;
 }
