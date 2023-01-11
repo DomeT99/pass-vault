@@ -1,0 +1,5 @@
+@mixin btn-styling($colorBtn, $colorBorder, $colorTxt) {
+  background-color: var($colorBtn);
+  border-color: var($colorBorder);
+  color: var($colorTxt);
+}
