@@ -20,11 +20,10 @@ const btnIcon = computed(() => {
 
     <section class="button-bar">
       <Button
-        class="btn-primary btn-pad"
+        class="btn-secondary btn-pad"
         :prevent-default="true"
         :type="'button'"
-        ><i :src="btnIcon"></i
-      ></Button>
+        ><img :src="btnIcon" width="25" height="25" /></Button>
     </section>
   </Layout>
 </template>
@@ -40,6 +39,6 @@ const btnIcon = computed(() => {
 }
 .btn-pad {
   border-radius: 50%;
-  padding: 30px !important;
+  padding: 20px !important;
 }
 </style>

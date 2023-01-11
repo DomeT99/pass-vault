@@ -19,6 +19,20 @@
   }
   &.btn-primary {
     background-color: var(--primary-color);
+    &.btn-primary:active {
+      background-color: var(--primary-color);
+      color: var(--white);
+      border-color: var(--primary-color);
+    }
+  }
+  &.btn-secondary {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    &.btn-secondary:active {
+      background-color: var(--secondary-color);
+      color: var(--white);
+      border-color: var(--secondary-color);
+    }
   }
 }
 
