@@ -10,6 +10,11 @@ const routes = [
     path: "/",
     name: "home",
     component: () => import('../views/Home.vue')
+  },
+  {
+    path: "/addpassword",
+    name: "addpassword",
+    component: () => import('../views/AddPassword.vue')
   }
   
 ]
