@@ -4,6 +4,7 @@ import { computed, defineAsyncComponent } from "vue";
 import Layout from "../layout/Default.vue";
 import Button from "../components/common/Button.vue";
 import Loading from "../components/common/Loading.vue";
+import Modal from "../components/common/Modal.vue";
 
 const Table = defineAsyncComponent({
   loader: () => import("../components/Home/SectionTable.vue"),
@@ -15,16 +16,16 @@ const Table = defineAsyncComponent({
 const btnIcon = computed(() => {
   return new URL("../assets/images/plus-solid.svg", import.meta.url).href;
 });
-
 </script>
 <template>
   <Layout>
+    <template>
+      <Modal />
+    </template>
+    
     <Table />
     <section class="button-bar">
-      <Button
-        class="btn-secondary btn-pad"
-        :prevent-default="true"
-        :type="'button'"
+      <Button class="btn-secondary btn-pad" :type="'button'"
         ><img :src="btnIcon" width="25" height="25"
       /></Button>
     </section>

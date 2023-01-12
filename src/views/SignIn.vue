@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import Form from '../components/common/Form.vue';
-import Input from '../components/common/Input.vue';
-import Label from '../components/common/Label.vue';
-import Button from '../components/common/Button.vue';
+import Form from "../components/common/Form.vue";
+import Input from "../components/common/Input.vue";
+import Label from "../components/common/Label.vue";
+import Button from "../components/common/Button.vue";
 </script>
 <template>
   <section class="bg-primary min-vh-100 v-align-center">
@@ -19,10 +19,14 @@ import Button from '../components/common/Button.vue';
             <Label :for="'password-input'" class="form-label text-white">
               Password
             </Label>
-            <Input class="form-control" :id="'password-input'" :type="'password'" />
+            <Input
+              class="form-control"
+              :id="'password-input'"
+              :type="'password'"
+            />
           </div>
           <div class="justify-content-center d-flex">
-            <Button class="btn-fifth w-100" :prevent-default="true" :type="'submit'">Login</Button>
+            <Button class="btn-fifth w-100" :type="'submit'">Login</Button>
           </div>
         </Form>
       </div>

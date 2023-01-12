@@ -66,3 +66,16 @@
   padding: 50px;
   color: var(--third-color);
 }
+
+/*Modal*/
+.modal-header {
+  background-color: var(--third-color);
+  color: var(--black);
+  border-bottom: 1px solid var(--black);
+}
+.modal-body {
+  min-height: 15vh;
+}
+.modal-footer{
+  border-top: 1px solid var(--black);
+}

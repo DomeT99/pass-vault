@@ -11,7 +11,7 @@ import Button from "../common/Button.vue";
       <Input :place-holder="'Site/App'" class="form-control filter" />
     </div>
     <div class="col-md-3 col-lg-2 col-sm-3">
-      <Button class="btn-fifth w-100" :prevent-default="true" :type="'button'"
+      <Button class="btn-fifth w-100" :type="'button'"
         >Search</Button
       >
     </div>
