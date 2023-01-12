@@ -1,11 +1,14 @@
 <script setup lang="ts">
+//Vue native modules
 import { computed, defineAsyncComponent } from "vue";
 
+//Components
 import Layout from "../layout/Default.vue";
 import Button from "../components/common/Button.vue";
 import Loading from "../components/common/Loading.vue";
 import Modal from "../components/common/Modal.vue";
 
+//Async Components
 const Table = defineAsyncComponent({
   loader: () => import("../components/Home/SectionTable.vue"),
   loadingComponent: Loading,
@@ -13,6 +16,7 @@ const Table = defineAsyncComponent({
   timeout: 5000,
 });
 
+//Computed Props
 const btnIcon = computed(() => {
   return new URL("../assets/images/plus-solid.svg", import.meta.url).href;
 });

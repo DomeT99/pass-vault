@@ -1,4 +1,7 @@
 <script setup lang="ts">
+/**Section that is loaded asynchronously in Home views*/
+
+//Components
 import Table from "../common/Table.vue";
 import Filter from "./Filter.vue";
 </script>

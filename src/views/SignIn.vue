@@ -1,4 +1,5 @@
 <script setup lang="ts">
+//Components 
 import Form from "../components/common/Form.vue";
 import Input from "../components/common/Input.vue";
 import Label from "../components/common/Label.vue";
@@ -35,6 +36,7 @@ import Button from "../components/common/Button.vue";
 </template>
 
 <style scoped>
+/**Custom style for this page */
 .v-align-center {
   display: flex;
   align-items: center;

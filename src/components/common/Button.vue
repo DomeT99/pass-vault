@@ -1,10 +1,16 @@
 <script setup lang="ts">
+/**Generic button component */
+
+//Types
 import { ButtonType } from '../../modules/types'
 
+//Interface to describe the component's props
 interface ButtonModel<T> {
     fnButton?(params: T): T;
     type: ButtonType;
 }
+
+//Instance of props
 const props = defineProps<ButtonModel<unknown>>();
 </script>
 <template>

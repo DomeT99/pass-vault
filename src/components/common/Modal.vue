@@ -1,4 +1,7 @@
 <script setup lang="ts">
+/**Generic modal component */
+
+//Components
 import Button from "./Button.vue";
 </script>
 <template>

@@ -1,13 +1,22 @@
 <script setup lang="ts">
+/**Generic input component */
+
 // @ts-nocheck
+
+//Types
 import { InputType } from '../../modules/types';
 
+//Interface to describe the component's props
 interface InputModel {
     type?: InputType;
     id?: string;
     placeHolder?: string;
 }
+
+//Instance of the value emitted to the parent component
 defineEmits(["update:modelValue"]);
+
+//Instance of props
 const props = defineProps<InputModel>();
 </script>
 

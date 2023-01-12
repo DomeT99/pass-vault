@@ -1,11 +1,17 @@
 <script setup lang="ts">
+/**Common footer of the app */
+
+//Vue native modules
 import { computed } from "vue";
 
+//Computed props
 let dateNow = computed(() => {
   return new Date().getFullYear();
 });
 
+//Functions
 function openLinkTree() {
+  /**This Fn for open the LinkTree link */
   window.open("https://linktr.ee/domenicotenace");
 }
 </script>
@@ -17,6 +23,7 @@ function openLinkTree() {
   </footer>
 </template>
 <style scoped>
+/**Custom style of component */
 .pointer {
   cursor: pointer;
 }

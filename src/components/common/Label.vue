@@ -1,5 +1,7 @@
 <script setup lang="ts">
+/**Generic label component */
 
+//Interface to describe the component's props
 interface LabelModel {
     for?: string;
 }

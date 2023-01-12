@@ -1,4 +1,7 @@
 <script setup lang="ts">
+/**Filter bar component of the table */
+
+//Components
 import Input from "../common/Input.vue";
 import Button from "../common/Button.vue";
 </script>
