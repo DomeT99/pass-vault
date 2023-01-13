@@ -39,6 +39,22 @@
       box-shadow: none;
     }
   }
+  &.addpsw {
+    border: 2px solid var(--third-color);
+    &.addpsw:focus {
+      border: 2px solid var(--third-color);
+      outline: 0;
+      box-shadow: none;
+    }
+  }
+  &.psw {
+    border: 2px solid var(--fifth-color);
+    &.psw:focus {
+      border: 2px solid var(--fifth-color);
+      outline: 0;
+      box-shadow: none;
+    }
+  }
 }
 .form-control:focus {
   border-color: var(--white);
@@ -76,6 +92,6 @@
 .modal-body {
   min-height: 15vh;
 }
-.modal-footer{
+.modal-footer {
   border-top: 1px solid var(--black);
 }
