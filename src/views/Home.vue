@@ -53,6 +53,6 @@ function switchPassView(){
 }
 .btn-pad {
   border-radius: 50%;
-  padding: 20px !important;
+  padding: 10px !important;
 }
 </style>

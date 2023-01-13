@@ -1,6 +1,6 @@
 <script setup lang="ts">
 //Vue native modules
-import { defineAsyncComponent,computed } from "vue";
+import { defineAsyncComponent, computed } from "vue";
 
 import Layout from "../layout/Default.vue";
 import Input from "../components/common/Input.vue";
@@ -21,8 +21,7 @@ const btnIcon = computed(() => {
   return new URL("../assets/images/arrow-left-solid.svg", import.meta.url).href;
 });
 
-function returnHomePage(){
-  debugger
+function returnHomePage() {
   router.push("/");
 }
 </script>
@@ -77,7 +76,10 @@ function returnHomePage(){
       </section>
     </Form>
     <section class="button-bar">
-      <Button :fn-button="returnHomePage" class="btn-secondary btn-pad" :type="'button'"
+      <Button
+        :fn-button="returnHomePage"
+        class="btn-secondary btn-pad"
+        :type="'button'"
         ><img :src="btnIcon" width="25" height="25"
       /></Button>
     </section>
@@ -98,7 +100,7 @@ function returnHomePage(){
 }
 .btn-pad {
   border-radius: 50%;
-  padding: 20px !important;
+  padding: 10px !important;
 }
 .min-vh-40 {
   min-height: 40vh;

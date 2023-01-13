@@ -4,6 +4,7 @@
 //Components
 import Table from "../common/Table.vue";
 import Filter from "./Filter.vue";
+import Pagination from "../common/Pagination.vue";
 </script>
 
 <template>
@@ -12,6 +13,9 @@ import Filter from "./Filter.vue";
   </section>
   <section class="container pt-5 fade-in">
     <Table />
+  </section>
+  <section class="d-flex justify-content-center container pt-5 fade-in">
+    <Pagination />
   </section>
 </template>
 <style scoped>
