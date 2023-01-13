@@ -1,73 +1,29 @@
+<script setup lang="ts">
+let dataJson = [
+  { First: "First 1", Last: "First 1" },
+  { First: "First 2", Last: "First 1" },
+  { First: "First 3", Last: "First 1" },
+  { First: "First 4", Last: "First 1" },
+  { First: "First 5", Last: "First 1" },
+  { First: "First 6", Last: "First 1" },
+  { First: "First 7", Last: "First 1" },
+  { First: "First 8", Last: "First 1" },
+  { First: "First 9", Last: "First 1" },
+  { First: "First 10", Last: "First 1" },
+];
+</script>
 <template>
-  <table class="table  table-bordered table-hover">
+  <table class="table table-bordered table-hover">
     <thead class="table-secondary">
       <tr>
-        <th scope="col">#</th>
         <th scope="col">First</th>
         <th scope="col">Last</th>
-        <th scope="col">Handle</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-      </tr>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-      </tr>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
+      <tr v-for="item in dataJson">
+        <td>{{ item.First }}</td>
+        <td>{{ item.Last }}</td>
       </tr>
     </tbody>
   </table>
