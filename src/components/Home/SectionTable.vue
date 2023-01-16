@@ -31,10 +31,10 @@ let dataJson: DataJson[] = [
   <section class="container pt-10 fade-in">
     <Filter />
   </section>
-  <section class="container pt-5 fade-in">
+  <section class="container pt-5 fade-in table-responsive">
     <Table :id="idTable" />
   </section>
-  <section class="d-flex justify-content-center container pt-5 fade-in sticky-bottom">
+  <section class="d-flex justify-content-center container pt-5 fade-in">
     <Pagination :id="idTable" :data-json="dataJson" />
   </section>
 </template>

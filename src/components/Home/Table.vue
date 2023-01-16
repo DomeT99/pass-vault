@@ -18,6 +18,9 @@ const props = defineProps<TableModel>();
         <th scope="col">Site/App</th>
         <th scope="col">Username</th>
         <th scope="col">Password</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody :id="props.id">

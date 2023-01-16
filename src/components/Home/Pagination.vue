@@ -34,8 +34,6 @@ function nextPage() {
 }
 
 function changePage(page: number) {
-  let btnNext = document.getElementById("btn_next")! as HTMLAnchorElement;
-  let btnPrev = document.getElementById("btn_prev")! as HTMLAnchorElement;
   let idBodyTable = document.getElementById(props.id)! as
     | HTMLElement
     | HTMLTableElement;
@@ -55,21 +53,13 @@ function changePage(page: number) {
     idBodyTable.innerHTML += `<tr>
                           <td>${props.dataJson[i].id}</td>
                           <td>${props.dataJson[i].site}</td>
-                          <td>${props.dataJson[i].site}</td>
                           <td>${props.dataJson[i].username}</td>
+                          <td>${props.dataJson[i].password}</td>
+                          
+                          <td><button class="btn btn-fourth w-100">✒️</button></td>
+                          <td><button class="btn btn-primary w-100">🔍</button></td>
+                          <td><button class="btn btn-fifth w-100">❌</button></td>
                          </tr>`;
-  }
-
-  if (page == 1) {
-    btnPrev.style.visibility = "hidden";
-  } else {
-    btnPrev.style.visibility = "visible";
-  }
-
-  if (page == numPages()) {
-    btnNext.style.visibility = "hidden";
-  } else {
-    btnNext.style.visibility = "visible";
   }
 }
 
@@ -83,15 +73,15 @@ onMounted(() => {
 </script>
 
 <template>
-  <nav aria-label="Page navigation example">
+  <nav aria-label="Table pagination">
     <ul class="pagination">
       <li class="page-item">
-        <a @click="prevPage" class="page-link" id="btn_prev">
+        <a @click="prevPage" class="page-link">
           <span aria-hidden="true">&laquo;</span>
         </a>
       </li>
       <li class="page-item">
-        <a @click="nextPage" class="page-link" id="btn_next">
+        <a @click="nextPage" class="page-link">
           <span aria-hidden="true">&raquo;</span>
         </a>
       </li>
@@ -99,7 +89,7 @@ onMounted(() => {
   </nav>
 </template>
 <style scoped>
-a{
+a {
   cursor: pointer;
 }
 </style>

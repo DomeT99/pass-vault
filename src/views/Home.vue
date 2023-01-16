@@ -51,8 +51,4 @@ function switchPassView(){
   bottom: 0;
   right: 0;
 }
-.btn-pad {
-  border-radius: 50%;
-  padding: 10px !important;
-}
 </style>

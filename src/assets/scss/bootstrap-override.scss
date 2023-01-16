@@ -27,6 +27,17 @@
       @include btn-styling(--secondary-color, --secondary-color, --white);
     }
   }
+  &.btn-fourth {
+    @include btn-styling( --fourth-color,  --fourth-color, --white);
+    &.btn-fourth:active {
+      @include btn-styling( --fourth-color,  --fourth-color, --white);
+    }
+  }
+
+  &.btn-pad {
+    border-radius: 50%;
+    padding: 10px !important;
+  }
 }
 
 /*Form*/
@@ -94,4 +105,29 @@
 }
 .modal-footer {
   border-top: 1px solid var(--black);
+}
+
+/*Pagination*/
+.pagination {
+  --bs-pagination-padding-x: 1.2rem;
+  --bs-pagination-padding-y: 0.4rem;
+  --bs-pagination-font-size: 1.5rem;
+  --bs-pagination-color: var(--black);
+  --bs-pagination-bg: var(--third-color);
+  --bs-pagination-border-width: 4px;
+  --bs-pagination-border-color: var( --white);
+  --bs-pagination-border-radius: 50%;
+  --bs-pagination-hover-color: var(--black);
+  --bs-pagination-hover-bg: var(--third-color);
+  --bs-pagination-hover-border-color: var(--third-color);
+  --bs-pagination-focus-color: var(--bs-link-hover-color);
+  --bs-pagination-focus-bg: var(--bs-secondary-bg);
+  --bs-pagination-focus-box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  --bs-pagination-active-color:  var(--black);
+  --bs-pagination-active-bg:var(--third-color);
+  --bs-pagination-active-border-color:var(--third-color);
+  --bs-pagination-disabled-color: var(--black);
+  --bs-pagination-disabled-bg: var(--white);
+  --bs-pagination-disabled-border-color: var(--black);
+ 
 }
