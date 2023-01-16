@@ -1,16 +1,17 @@
 <script setup lang="ts">
+//Types
 import { DataJson } from "../../modules/types";
 
+//Interface to describe the component's props
 interface TableModel {
   id: string;
-  dataJson: DataJson[];
+  dataJson?: DataJson[];
 }
-
 
 const props = defineProps<TableModel>();
 </script>
 <template>
-  <table :id="props.id" class="table table-bordered table-hover">
+  <table class="table table-bordered table-hover">
     <thead class="table-secondary">
       <tr>
         <th scope="col">ID</th>
@@ -19,13 +20,7 @@ const props = defineProps<TableModel>();
         <th scope="col">Password</th>
       </tr>
     </thead>
-    <tbody>
-      <tr v-for="item in props.dataJson">
-        <td>{{ item.id }}</td>
-        <td>{{ item.site }}</td>
-        <td>{{ item.username }}</td>
-        <td>{{ item.password }}</td>
-      </tr>
+    <tbody :id="props.id">
     </tbody>
   </table>
 </template>

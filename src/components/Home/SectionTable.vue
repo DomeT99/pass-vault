@@ -4,9 +4,12 @@
 //Components
 import Table from "./Table.vue";
 import Filter from "./Filter.vue";
-import Pagination from "../common/Pagination.vue";
+import Pagination from "./Pagination.vue";
+
+//Types
 import { DataJson } from "../../modules/types";
 
+//Third Part Library
 import _ from "lodash";
 
 let idTable: string = _.uniqueId("");
@@ -16,6 +19,11 @@ let dataJson: DataJson[] = [
   { id: 1, site: "Reddit", username: "Dvalin99", password: "CiaoCiao2" },
   { id: 1, site: "Reddit", username: "Dvalin99", password: "CiaoCiao2" },
   { id: 1, site: "Reddit", username: "Dvalin99", password: "CiaoCiao2" },
+  { id: 1, site: "das", username: "Dvalin99", password: "CiaoCiao2" },
+  { id: 1, site: "dsa", username: "Dvalin99", password: "CiaoCiao2" },
+  { id: 1, site: "dsas", username: "Dvalin99", password: "CiaoCiao2" },
+  { id: 1, site: "das", username: "Dvalin99", password: "CiaoCiao2" },
+  { id: 1, site: "s", username: "Dvalin99", password: "CiaoCiao2" },
 ];
 </script>
 
@@ -24,10 +32,10 @@ let dataJson: DataJson[] = [
     <Filter />
   </section>
   <section class="container pt-5 fade-in">
-    <Table :data-json="dataJson" :id="idTable" />
+    <Table :id="idTable" />
   </section>
-  <section class="d-flex justify-content-center container pt-5 fade-in">
-    <!-- <Pagination :id-table="idTable" :data-json="dataJson" /> -->
+  <section class="d-flex justify-content-center container pt-5 fade-in sticky-bottom">
+    <Pagination :id="idTable" :data-json="dataJson" />
   </section>
 </template>
 <style scoped>

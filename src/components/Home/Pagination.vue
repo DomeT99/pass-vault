@@ -1,17 +1,23 @@
 <script setup lang="ts">
-// @ts-nocheck
+//Vue native modules
 import { onMounted } from "vue";
+
+//Third Part Library
 import _ from "lodash";
 
+//Types
+import { DataJson } from "../../modules/types";
+
+//Interface to describe the component's props
 interface PaginationModel {
-  dataJson: object[];
-  idTable: string;
+  dataJson: DataJson[];
+  id: string;
 }
 
 const props = defineProps<PaginationModel>();
 
 let currentPage = 1;
-let recordsPerPage = 3;
+let recordsPerPage = 5;
 
 function prevPage() {
   if (currentPage > 1) {
@@ -30,7 +36,7 @@ function nextPage() {
 function changePage(page: number) {
   let btnNext = document.getElementById("btn_next")! as HTMLAnchorElement;
   let btnPrev = document.getElementById("btn_prev")! as HTMLAnchorElement;
-  let idTable = document.getElementById(props.idTable)! as
+  let idBodyTable = document.getElementById(props.id)! as
     | HTMLElement
     | HTMLTableElement;
 
@@ -42,8 +48,16 @@ function changePage(page: number) {
     page = numPages();
   }
 
+  idBodyTable.innerHTML = "";
+
+  /**Improve in the future */
   for (let i = (page - 1) * recordsPerPage; i < page * recordsPerPage; i++) {
-    idTable.innerHTML += props.dataJson[i].First;
+    idBodyTable.innerHTML += `<tr>
+                          <td>${props.dataJson[i].id}</td>
+                          <td>${props.dataJson[i].site}</td>
+                          <td>${props.dataJson[i].site}</td>
+                          <td>${props.dataJson[i].username}</td>
+                         </tr>`;
   }
 
   if (page == 1) {
@@ -72,27 +86,20 @@ onMounted(() => {
   <nav aria-label="Page navigation example">
     <ul class="pagination">
       <li class="page-item">
-        <a
-          @click="prevPage"
-          class="page-link"
-          id="btn_prev"
-          href="#"
-          aria-label="Prev"
-        >
+        <a @click="prevPage" class="page-link" id="btn_prev">
           <span aria-hidden="true">&laquo;</span>
         </a>
       </li>
       <li class="page-item">
-        <a
-          @click="nextPage"
-          class="page-link"
-          id="btn_next"
-          href="#"
-          aria-label="Next"
-        >
+        <a @click="nextPage" class="page-link" id="btn_next">
           <span aria-hidden="true">&raquo;</span>
         </a>
       </li>
     </ul>
   </nav>
 </template>
+<style scoped>
+a{
+  cursor: pointer;
+}
+</style>

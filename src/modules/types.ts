@@ -6,4 +6,4 @@ export type DataJson = {
   site: string;
   username: string;
   password: string;
-};
+};//This type is for the Pagination Component

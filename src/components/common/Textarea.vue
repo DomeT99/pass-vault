@@ -1,6 +1,7 @@
 <script setup lang="ts">
 // @ts-nocheck
 
+//Interface to describe the component's props
 interface TextareaModel {
   placeHolder?: string;
   rows?: number;
