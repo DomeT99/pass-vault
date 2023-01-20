@@ -1,7 +1,5 @@
-export interface PswDBModel {
-    id: string;
-    site: string;
-    description: string;
-    username: string;
-    password: string;
+import { DataJsonType } from "./types";
+
+export interface PswDBModel extends DataJsonType {
+  description: string;
 }

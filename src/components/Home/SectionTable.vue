@@ -7,23 +7,23 @@ import Filter from "./Filter.vue";
 import Pagination from "./Pagination.vue";
 
 //Types
-import { DataJson } from "../../modules/types";
+import { DataJsonType } from "../../modules/types";
 
 //Third Part Library
 import _ from "lodash";
 
 let idTable: string = _.uniqueId("");
-let dataJson: DataJson[] = [
-  { id: 1, site: "Reddit", username: "Dvalin99", password: "CiaoCiao2" },
-  { id: 1, site: "Reddit", username: "Dvalin99", password: "CiaoCiao2" },
-  { id: 1, site: "Reddit", username: "Dvalin99", password: "CiaoCiao2" },
-  { id: 1, site: "Reddit", username: "Dvalin99", password: "CiaoCiao2" },
-  { id: 1, site: "Reddit", username: "Dvalin99", password: "CiaoCiao2" },
-  { id: 1, site: "das", username: "Dvalin99", password: "CiaoCiao2" },
-  { id: 1, site: "dsa", username: "Dvalin99", password: "CiaoCiao2" },
-  { id: 1, site: "dsas", username: "Dvalin99", password: "CiaoCiao2" },
-  { id: 1, site: "das", username: "Dvalin99", password: "CiaoCiao2" },
-  { id: 1, site: "s", username: "Dvalin99", password: "CiaoCiao2" },
+let dataJson: DataJsonType[] = [
+  { id: "1", site: "Reddit", username: "Dvalin99", password: "CiaoCiao2" },
+  { id: "1", site: "Reddit", username: "Dvalin99", password: "CiaoCiao2" },
+  { id: "1", site: "Reddit", username: "Dvalin99", password: "CiaoCiao2" },
+  { id: "1", site: "Reddit", username: "Dvalin99", password: "CiaoCiao2" },
+  { id: "1", site: "Reddit", username: "Dvalin99", password: "CiaoCiao2" },
+  { id: "1", site: "das", username: "Dvalin99", password: "CiaoCiao2" },
+  { id: "1", site: "dsa", username: "Dvalin99", password: "CiaoCiao2" },
+  { id: "1", site: "dsas", username: "Dvalin99", password: "CiaoCiao2" },
+  { id: "1", site: "das", username: "Dvalin99", password: "CiaoCiao2" },
+  { id: "1", site: "s", username: "Dvalin99", password: "CiaoCiao2" },
 ];
 </script>
 

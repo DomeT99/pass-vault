@@ -11,18 +11,28 @@ export const pswDB = await create({
   },
 });
 
-export class LyraSearch {
+class LyraSearch {
+  private static _instance: LyraSearch;
 
-  public static async lyraInsert(params: PswDBModel) {
+  constructor() {
+    if (LyraSearch._instance) {
+      throw new Error("Error: Instantiation failed.");
+    }
+    LyraSearch._instance = this;
+  }
+  test() {
+    alert("A");
+  }
+
+  public async lyraInsert(params: PswDBModel) {
     await insert(pswDB, params);
   }
 
-  public static async lyraSearch(term: string) {
+  public async lyraSearch(term: string) {
     const searchResult = await search(pswDB, {
       term: term,
     });
     return searchResult;
   }
 }
-
-
+export const t = new LyraSearch();
