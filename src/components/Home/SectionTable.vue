@@ -20,11 +20,10 @@ let showPagination = ref(false);
 
 onMounted(async () => {
   try {
-    await pswStore.populateData();
+    await pswStore.populateTable();
 
     if (pswStore.dbData.length !== 0) {
       showPagination.value = true;
-    } else {
     }
   } catch (e) {
     throw e;

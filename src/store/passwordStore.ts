@@ -13,20 +13,24 @@ export const usePasswordStore = defineStore("passwordStore", () => {
   const dbData: PswDBModel[] = reactive([]);
 
   /**ACTIONS */
-  async function populateData(): Promise<void> {
-    const querySnapshot = await getDocs(collection(db, "Container-Pass"));
-    querySnapshot.forEach((doc) => {
-      let dataFirebase = {
-        id: doc.data().id,
-        description: doc.data().description,
-        site: doc.data().site,
-        username: doc.data().username,
-        password: doc.data().password,
-      } satisfies PswDBModel;
+  async function populateTable(): Promise<void> {
+    try {
+      const querySnapshot = await getDocs(collection(db, "Container-Pass"));
+      querySnapshot.forEach((doc) => {
+        let dataFirebase = {
+          id: doc.data().id,
+          description: doc.data().description,
+          site: doc.data().site,
+          username: doc.data().username,
+          password: doc.data().password,
+        } satisfies PswDBModel;
 
-      dbData.push(dataFirebase);
-    });
+        dbData.push(dataFirebase);
+      });
+    } catch (e) {
+      throw e;
+    }
   }
 
-  return { populateData, dbData };
+  return { populateTable, dbData };
 });
