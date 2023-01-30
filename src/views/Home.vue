@@ -1,6 +1,6 @@
 <script setup lang="ts">
 //Vue native modules
-import { computed, defineAsyncComponent } from "vue";
+import { computed, defineAsyncComponent, onMounted } from "vue";
 
 //Components
 import Layout from "../layout/Default.vue";
@@ -10,6 +10,11 @@ import Modal from "../components/common/Modal.vue";
 
 //Router
 import router from "../router";
+
+//Store
+import { usePasswordStore } from "../store/passwordStore";
+
+const pswStore = usePasswordStore();
 
 //Async Components
 const Table = defineAsyncComponent({
@@ -25,20 +30,27 @@ const btnIcon = computed(() => {
 });
 
 //Functions
-function switchPassView(){
-  router.push('addpassword');
+function switchPassView() {
+  router.push("addpassword");
 }
 
+//Hooks
+onMounted(async () => {
+  await pswStore.populateData();
+});
 </script>
 <template>
   <Layout>
     <template>
       <Modal />
     </template>
-    
+
     <Table />
     <section class="button-bar">
-      <Button :fn-button="switchPassView" class="btn-secondary btn-pad" :type="'button'"
+      <Button
+        :fn-button="switchPassView"
+        class="btn-secondary btn-pad"
+        :type="'button'"
         ><img :src="btnIcon" width="25" height="25"
       /></Button>
     </section>
