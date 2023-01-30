@@ -6,11 +6,21 @@ import { PswDBModel } from "../modules/models";
 
 //Firebase modules
 import { db } from "../firebase/firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, addDoc } from "firebase/firestore";
+
+//Utils
+import { Utils } from "../utils/utils";
 
 export const usePasswordStore = defineStore("passwordStore", () => {
   /**STATE */
-  const dbData: PswDBModel[] = reactive([]);
+  let dbData: PswDBModel[] = reactive([]);
+  let newPassword: PswDBModel = reactive({
+    id: "",
+    username: "",
+    site: "",
+    description: "",
+    password: "",
+  });
 
   /**ACTIONS */
   async function populateTable(): Promise<void> {
@@ -32,5 +42,15 @@ export const usePasswordStore = defineStore("passwordStore", () => {
     }
   }
 
-  return { populateTable, dbData };
+  async function addNewPassword() {
+    try {
+      if (Utils.checkForm(newPassword)) {
+        await addDoc(collection(db, "Container-Pass"), newPassword);
+      }
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  return { populateTable, addNewPassword, dbData, newPassword };
 });

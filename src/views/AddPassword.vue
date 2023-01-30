@@ -2,6 +2,9 @@
 //Vue native modules
 import { defineAsyncComponent, computed } from "vue";
 
+//Store
+import { usePasswordStore } from "../store/passwordStore";
+
 import Layout from "../layout/Default.vue";
 import Input from "../components/common/Input.vue";
 import Loading from "../components/common/Loading.vue";
@@ -15,6 +18,8 @@ const Form = defineAsyncComponent({
   delay: 700,
   timeout: 5000,
 });
+
+const pswStore = usePasswordStore();
 
 //Computed Props
 const btnIcon = computed(() => {
@@ -31,26 +36,40 @@ function returnHomePage() {
     <Form class="pt-10 v-align-center min-vh-40 fade-in">
       <section class="container">
         <div class="row d-flex justify-content-center g-4">
-          <div class="col-sm-6 col-lg-4">
+          <div class="col-sm-3 col-lg-1">
             <Input
-              :place-holder="'Username/Email'"
+              :value="pswStore.newPassword.id"
+              :place-holder="'Id'"
               class="form-control form-control-lg addpsw"
+              v-model="pswStore.newPassword.id"
             />
           </div>
-          <div class="col-sm-6 col-lg-4">
+          <div class="col-sm-5 col-lg-3">
             <Input
+              :value="pswStore.newPassword.username"
+              :place-holder="'Username/Email'"
+              class="form-control form-control-lg addpsw"
+              v-model="pswStore.newPassword.username"
+            />
+          </div>
+          <div class="col-sm-4 col-lg-4">
+            <Input
+              :value="pswStore.newPassword.site"
               :place-holder="'Site/Application'"
               class="form-control form-control-lg addpsw"
+              v-model="pswStore.newPassword.site"
             />
           </div>
         </div>
         <div class="row d-flex justify-content-center g-4 pt-5">
           <div class="col-sm-12 col-lg-8 col-md-12">
             <TextArea
+              :value="pswStore.newPassword.description"
               :rows="7"
               :resize="false"
               :place-holder="'Description'"
               class="form-control form-control-lg addpsw"
+              v-model="pswStore.newPassword.description"
             />
           </div>
         </div>
@@ -58,9 +77,11 @@ function returnHomePage() {
         <div class="row d-flex justify-content-center g-4 pt-5">
           <div class="col-sm-12 col-lg-8 col-md-12">
             <Input
+              :value="pswStore.newPassword.password"
               :type="'password'"
               :place-holder="'Password'"
               class="form-control form-control-lg psw"
+              v-model="pswStore.newPassword.password"
             />
           </div>
         </div>
@@ -70,7 +91,7 @@ function returnHomePage() {
             <Button class="btn-fifth w-100" :type="'submit'">Reset</Button>
           </div>
           <div class="col-sm-12 col-lg-4 col-md-6">
-            <Button class="btn-primary w-100" :type="'submit'">Save</Button>
+            <Button class="btn-primary w-100" :type="'submit'" :fn-button="pswStore.addNewPassword">Save</Button>
           </div>
         </div>
       </section>

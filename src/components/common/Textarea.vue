@@ -6,6 +6,7 @@ interface TextareaModel {
   placeHolder?: string;
   rows?: number;
   resize?: boolean;
+  value: string;
 }
 
 const props = defineProps<TextareaModel>();
@@ -16,6 +17,7 @@ defineEmits(["update:modelValue"]);
 
 <template>
   <textarea
+    :value="props.value"
     :class="{ 'no-resize': !props.resize }"
     :placeholder="props.placeHolder"
     :rows="props.rows ?? 5"
