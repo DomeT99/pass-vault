@@ -6,11 +6,11 @@ import { onMounted } from "vue";
 import _ from "lodash";
 
 //Types
-import { DataJson } from "../../modules/types";
+import { DataJsonType } from "../../modules/types";
 
 //Interface to describe the component's props
 interface PaginationModel {
-  dataJson: DataJson[];
+  dataJson: DataJsonType[];
   id: string;
 }
 

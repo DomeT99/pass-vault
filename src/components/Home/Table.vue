@@ -1,13 +1,8 @@
 <script setup lang="ts">
-//Types
-import { DataJson } from "../../modules/types";
-
 //Interface to describe the component's props
 interface TableModel {
   id: string;
-  dataJson?: DataJson[];
 }
-
 const props = defineProps<TableModel>();
 </script>
 <template>
@@ -23,7 +18,6 @@ const props = defineProps<TableModel>();
         <th scope="col"></th>
       </tr>
     </thead>
-    <tbody :id="props.id">
-    </tbody>
+    <tbody :id="props.id"></tbody>
   </table>
 </template>

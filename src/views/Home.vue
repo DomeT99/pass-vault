@@ -11,11 +11,6 @@ import Modal from "../components/common/Modal.vue";
 //Router
 import router from "../router";
 
-//Store
-import { usePasswordStore } from "../store/passwordStore";
-
-const pswStore = usePasswordStore();
-
 //Async Components
 const Table = defineAsyncComponent({
   loader: () => import("../components/Home/SectionTable.vue"),
@@ -34,10 +29,6 @@ function switchPassView() {
   router.push("addpassword");
 }
 
-//Hooks
-onMounted(async () => {
-  await pswStore.populateData();
-});
 </script>
 <template>
   <Layout>
