@@ -10,22 +10,14 @@ import { collection, getDocs, addDoc } from "firebase/firestore";
 
 //Utils
 import { Utils } from "../utils/utils";
+import router from "../router";
 
 export const usePasswordStore = defineStore("passwordStore", () => {
-  /**STATE */
-  let dbData: PswDBModel[] = reactive([]);
-  let newPassword: PswDBModel = reactive({
-    id: "",
-    username: "",
-    site: "",
-    description: "",
-    password: "",
-  });
-
   /**ACTIONS */
-  async function populateTable(): Promise<void> {
+  async function populateTable(dbData: PswDBModel[]): Promise<PswDBModel[]> {
     try {
       const querySnapshot = await getDocs(collection(db, "Container-Pass"));
+
       querySnapshot.forEach((doc) => {
         let dataFirebase = {
           id: doc.data().id,
@@ -37,20 +29,23 @@ export const usePasswordStore = defineStore("passwordStore", () => {
 
         dbData.push(dataFirebase);
       });
+
+      return dbData;
     } catch (e) {
       throw e;
     }
   }
 
-  async function addNewPassword() {
+  async function addNewPassword(newPassword: PswDBModel) {
     try {
       if (Utils.checkForm(newPassword)) {
         await addDoc(collection(db, "Container-Pass"), newPassword);
+        router.push("/");
       }
     } catch (e) {
       throw e;
     }
   }
 
-  return { populateTable, addNewPassword, dbData, newPassword };
+  return { populateTable, addNewPassword };
 });

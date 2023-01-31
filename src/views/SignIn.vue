@@ -1,5 +1,5 @@
 <script setup lang="ts">
-//Components 
+//Components
 import Form from "../components/common/Form.vue";
 import Input from "../components/common/Input.vue";
 import Label from "../components/common/Label.vue";
@@ -14,13 +14,19 @@ import Button from "../components/common/Button.vue";
             <Label :for="'email-input'" class="form-label text-white">
               Email
             </Label>
-            <Input class="form-control" :id="'email-input'" :type="'email'" />
+            <Input
+              :value="'Default Value'"
+              class="form-control"
+              :id="'email-input'"
+              :type="'email'"
+            />
           </div>
           <div class="mb-4">
             <Label :for="'password-input'" class="form-label text-white">
               Password
             </Label>
             <Input
+              :value="'Default Value'"
               class="form-control"
               :id="'password-input'"
               :type="'password'"

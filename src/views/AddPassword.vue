@@ -1,16 +1,21 @@
 <script setup lang="ts">
 //Vue native modules
-import { defineAsyncComponent, computed } from "vue";
+import { defineAsyncComponent, computed, reactive } from "vue";
 
-//Store
-import { usePasswordStore } from "../store/passwordStore";
-
+//Components
 import Layout from "../layout/Default.vue";
 import Input from "../components/common/Input.vue";
 import Loading from "../components/common/Loading.vue";
 import TextArea from "../components/common/Textarea.vue";
 import Button from "../components/common/Button.vue";
 import router from "../router";
+
+//Modules
+import { PswDBModel } from "../modules/models";
+
+//Store
+import { usePasswordStore } from "../store/passwordStore";
+const pswStore = usePasswordStore();
 
 const Form = defineAsyncComponent({
   loader: () => import("../components/common/Form.vue"),
@@ -19,7 +24,13 @@ const Form = defineAsyncComponent({
   timeout: 5000,
 });
 
-const pswStore = usePasswordStore();
+let newPassword: PswDBModel = reactive({
+  id: "",
+  username: "",
+  site: "",
+  description: "",
+  password: "",
+});
 
 //Computed Props
 const btnIcon = computed(() => {
@@ -28,6 +39,14 @@ const btnIcon = computed(() => {
 
 function returnHomePage() {
   router.push("/");
+}
+
+function resetForm() {
+  newPassword.id = "";
+  newPassword.username = "";
+  newPassword.site = "";
+  newPassword.description = "";
+  newPassword.password = "";
 }
 </script>
 
@@ -38,38 +57,38 @@ function returnHomePage() {
         <div class="row d-flex justify-content-center g-4">
           <div class="col-sm-3 col-lg-1">
             <Input
-              :value="pswStore.newPassword.id"
+              :value="newPassword.id"
               :place-holder="'Id'"
               class="form-control form-control-lg addpsw"
-              v-model="pswStore.newPassword.id"
+              v-model="newPassword.id"
             />
           </div>
           <div class="col-sm-5 col-lg-3">
             <Input
-              :value="pswStore.newPassword.username"
+              :value="newPassword.username"
               :place-holder="'Username/Email'"
               class="form-control form-control-lg addpsw"
-              v-model="pswStore.newPassword.username"
+              v-model="newPassword.username"
             />
           </div>
           <div class="col-sm-4 col-lg-4">
             <Input
-              :value="pswStore.newPassword.site"
+              :value="newPassword.site"
               :place-holder="'Site/Application'"
               class="form-control form-control-lg addpsw"
-              v-model="pswStore.newPassword.site"
+              v-model="newPassword.site"
             />
           </div>
         </div>
         <div class="row d-flex justify-content-center g-4 pt-5">
           <div class="col-sm-12 col-lg-8 col-md-12">
             <TextArea
-              :value="pswStore.newPassword.description"
+              :value="newPassword.description"
               :rows="7"
               :resize="false"
               :place-holder="'Description'"
               class="form-control form-control-lg addpsw"
-              v-model="pswStore.newPassword.description"
+              v-model="newPassword.description"
             />
           </div>
         </div>
@@ -77,21 +96,31 @@ function returnHomePage() {
         <div class="row d-flex justify-content-center g-4 pt-5">
           <div class="col-sm-12 col-lg-8 col-md-12">
             <Input
-              :value="pswStore.newPassword.password"
+              :value="newPassword.password"
               :type="'password'"
               :place-holder="'Password'"
               class="form-control form-control-lg psw"
-              v-model="pswStore.newPassword.password"
+              v-model="newPassword.password"
             />
           </div>
         </div>
 
         <div class="row d-flex justify-content-center g-4 pt-5">
           <div class="col-sm-12 col-lg-4 col-md-6">
-            <Button class="btn-fifth w-100" :type="'submit'">Reset</Button>
+            <Button
+              :fn-button="resetForm"
+              class="btn-fifth w-100"
+              :type="'submit'"
+              >Reset</Button
+            >
           </div>
           <div class="col-sm-12 col-lg-4 col-md-6">
-            <Button class="btn-primary w-100" :type="'submit'" :fn-button="pswStore.addNewPassword">Save</Button>
+            <Button
+              class="btn-primary w-100"
+              :type="'submit'"
+              :fn-button="() => pswStore.addNewPassword(newPassword)"
+              >Save</Button
+            >
           </div>
         </div>
       </section>

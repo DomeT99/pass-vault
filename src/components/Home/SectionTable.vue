@@ -1,11 +1,14 @@
 <script setup lang="ts">
 /**Section that is loaded asynchronously in Home views*/
-import { onMounted, ref } from "vue";
+import { onMounted, onUnmounted, onUpdated, ref, reactive } from "vue";
 
 //Components
 import Table from "./Table.vue";
 import Filter from "./Filter.vue";
 import Pagination from "./Pagination.vue";
+
+//Modules
+import { PswDBModel } from "../../modules/models";
 
 //Third Part Library
 import _ from "lodash";
@@ -17,16 +20,30 @@ const pswStore = usePasswordStore();
 
 let idTable: string = _.uniqueId("");
 let showPagination = ref(false);
+let dbData: PswDBModel[] = reactive([]);
 
 onMounted(async () => {
   try {
-    await pswStore.populateTable();
-
-    if (pswStore.dbData.length !== 0) {
+    dbData = await pswStore.populateTable(dbData);
+    if (dbData.length !== 0) {
       showPagination.value = true;
     }
   } catch (e) {
     throw e;
+  }
+});
+
+onUnmounted(() => {
+  /**Update the state dbData (reset array) */
+  let localDbData = _.remove(dbData, () => {
+    return [];
+  });
+  dbData = localDbData;
+});
+
+onUpdated(() => {
+  if (dbData.length !== 0) {
+    showPagination.value = true;
   }
 });
 </script>
@@ -41,7 +58,7 @@ onMounted(async () => {
 
   <template v-if="showPagination">
     <section class="d-flex justify-content-center container pt-5 fade-in">
-      <Pagination :id="idTable" :data-json="pswStore.dbData" />
+      <Pagination :id="idTable" :data-json="dbData" />
     </section>
   </template>
 </template>
