@@ -13,8 +13,8 @@ import Button from "./Button.vue";
         </div>
         <div class="modal-body d-flex justify-content-center">...</div>
         <div class="modal-footer d-flex justify-content-center">
-          <Button class="btn-fifth" :type="'button'">No</Button>
-          <Button class="btn-primary" :type="'button'">Yes</Button>
+          <Button :fn-button="()=> null" class="btn-fifth" :type="'button'">No</Button>
+          <Button :fn-button="()=> null" class="btn-primary" :type="'button'">Yes</Button>
         </div>
       </div>
     </div>

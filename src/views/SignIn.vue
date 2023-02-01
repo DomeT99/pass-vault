@@ -33,7 +33,12 @@ import Button from "../components/common/Button.vue";
             />
           </div>
           <div class="justify-content-center d-flex">
-            <Button class="btn-fifth w-100" :type="'submit'">Login</Button>
+            <Button
+              :fn-button="() => null"
+              class="btn-fifth w-100"
+              :type="'submit'"
+              >Login</Button
+            >
           </div>
         </Form>
       </div>

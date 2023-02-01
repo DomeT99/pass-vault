@@ -33,19 +33,6 @@ onMounted(async () => {
   }
 });
 
-onUnmounted(() => {
-  /**Update the state dbData (reset array) */
-  let localDbData = _.remove(dbData, () => {
-    return [];
-  });
-  dbData = localDbData;
-});
-
-onUpdated(() => {
-  if (dbData.length !== 0) {
-    showPagination.value = true;
-  }
-});
 </script>
 
 <template>
