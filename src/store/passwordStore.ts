@@ -5,7 +5,7 @@ import { PswDBModel } from "../modules/models";
 
 //Firebase modules
 import { db } from "../firebase/firebase";
-import { collection, getDocs, addDoc, doc, getDoc } from "firebase/firestore";
+import { collection, getDocs, setDoc, doc, getDoc } from "firebase/firestore";
 
 //Utils
 import { Utils } from "../utils/utils";
@@ -26,7 +26,6 @@ export const usePasswordStore = defineStore("passwordStore", () => {
 					password: doc.data().password,
 				} satisfies PswDBModel;
 
-        console.log(doc.data());
 				dbData.push(dataFirebase);
 			});
 			return dbData;
@@ -38,7 +37,7 @@ export const usePasswordStore = defineStore("passwordStore", () => {
 	async function addNewPassword(newPassword: PswDBModel) {
 		try {
 			if (Utils.checkForm(newPassword)) {
-				await addDoc(collection(db, "Container-Pass"), newPassword);
+				await setDoc(doc(db, "Container-Pass", newPassword.id), newPassword);
 				router.push("/");
 			}
 		} catch (e) {
