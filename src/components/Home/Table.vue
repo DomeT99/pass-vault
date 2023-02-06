@@ -1,4 +1,6 @@
 <script setup lang="ts">
+	import { provide } from "vue";
+
 	//Modules
 	import { DataJsonType } from "../../modules/types";
 
@@ -48,7 +50,14 @@
 						>
 					</td>
 					<td><button class="btn btn-primary w-100">🔍</button></td>
-					<td><button class="btn btn-fifth w-100">❌</button></td>
+					<td>
+						<Button
+							:fn-button="() => provide('showModal', true)"
+							class="btn btn-fifth w-100"
+							:type="'button'"
+							>❌</Button
+						>
+					</td>
 				</tr>
 			</tbody>
 		</table>
