@@ -18,7 +18,6 @@
 	const pswStore = usePasswordStore();
 
 	let idTable: string = _.uniqueId("");
-	let showPagination = ref(false);
 	let dbData: PswDBModel[] = reactive([]);
 
 	onMounted(async () => {

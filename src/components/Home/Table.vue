@@ -1,5 +1,12 @@
 <script setup lang="ts">
+	//Modules
 	import { DataJsonType } from "../../modules/types";
+
+	//Router
+	import router from "../../router";
+
+	//Components
+	import Button from "../common/Button.vue";
 
 	//Interface to describe the component's props
 	interface TableModel {
@@ -7,9 +14,13 @@
 		dataJson: DataJsonType[];
 	}
 	const props = defineProps<TableModel>();
+
+	function editPassword(id: string) {
+		router.push("/updatepassword/" + id);
+	}
 </script>
 <template>
-	<div class="h-40 overflow-y-scroll">
+	<div class="max-h-40 overflow-y-scroll">
 		<table class="table table-bordered table-hover" :id="props.id">
 			<thead class="table-secondary">
 				<tr>
@@ -28,7 +39,14 @@
 					<td>{{ data.site }}</td>
 					<td>{{ data.username }}</td>
 					<td>{{ data.password }}</td>
-					<td><button class="btn btn-fourth w-100">✒️</button></td>
+					<td>
+						<Button
+							:fn-button="() => editPassword(data.id)"
+							class="btn btn-fourth w-100"
+							:type="'button'"
+							>✒️</Button
+						>
+					</td>
 					<td><button class="btn btn-primary w-100">🔍</button></td>
 					<td><button class="btn btn-fifth w-100">❌</button></td>
 				</tr>
@@ -38,8 +56,8 @@
 </template>
 
 <style scoped>
-	.h-40 {
-		height: 40vh;
+	.max-h-40 {
+		max-height: 40vh;
 	}
 	.overflow-y-scroll {
 		overflow-y: scroll;
