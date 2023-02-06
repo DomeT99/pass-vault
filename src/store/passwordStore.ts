@@ -5,7 +5,14 @@ import { PswDBModel } from "../modules/models";
 
 //Firebase modules
 import { db } from "../firebase/firebase";
-import { collection, getDocs, setDoc, doc, getDoc } from "firebase/firestore";
+import {
+	collection,
+	getDocs,
+	setDoc,
+	doc,
+	getDoc,
+	updateDoc,
+} from "firebase/firestore";
 
 //Utils
 import { Utils } from "../utils/utils";
@@ -34,7 +41,7 @@ export const usePasswordStore = defineStore("passwordStore", () => {
 		}
 	}
 
-	async function addNewPassword(newPassword: PswDBModel) {
+	async function addNewPassword(newPassword: PswDBModel): Promise<void> {
 		try {
 			if (Utils.checkForm(newPassword)) {
 				await setDoc(doc(db, "Container-Pass", newPassword.id), newPassword);
@@ -56,5 +63,23 @@ export const usePasswordStore = defineStore("passwordStore", () => {
 		}
 	}
 
-	return { populateTable, addNewPassword, getDocument };
+	async function updatePassword(changePassword: PswDBModel): Promise<void> {
+		try {
+			const docRef = doc(db, "Container-Pass", changePassword.id);
+
+			// Set the "capital" field of the city 'DC'
+			await updateDoc(docRef, {
+				id: changePassword.id,
+				username: changePassword.username,
+				site: changePassword.site,
+				description: changePassword.description,
+				password: changePassword.password,
+			});
+			router.push("/");
+		} catch (e) {
+			throw e;
+		}
+	}
+
+	return { populateTable, addNewPassword, getDocument, updatePassword };
 });

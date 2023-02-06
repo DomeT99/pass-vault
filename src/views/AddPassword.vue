@@ -26,7 +26,7 @@
 	import { usePasswordStore } from "../store/passwordStore";
 	const pswStore = usePasswordStore();
 
-  //Async Form component
+	//Async Form component
 	const Form = defineAsyncComponent({
 		loader: () => import("../components/common/Form.vue"),
 		loadingComponent: Loading,
@@ -34,7 +34,7 @@
 		timeout: 5000,
 	});
 
-  //Istance of router
+	//Istance of router
 	const route = useRoute();
 
 	let password: PswDBModel = reactive({
@@ -146,7 +146,11 @@
 						<Button
 							class="btn-primary w-100"
 							:type="'submit'"
-							:fn-button="() => pswStore.addNewPassword(password)"
+							:fn-button="
+								!route.params.id
+									? () => pswStore.addNewPassword(password)
+									: () => pswStore.updatePassword(password)
+							"
 							>Save</Button
 						>
 					</div>
