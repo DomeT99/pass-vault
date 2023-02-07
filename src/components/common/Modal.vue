@@ -29,7 +29,7 @@
 						>No</Button
 					>
 					<Button
-						:fn-button="() => props.succFunction"
+						:fn-button="props.succFunction"
 						class="btn-primary"
 						:type="'button'"
 						>Yes</Button

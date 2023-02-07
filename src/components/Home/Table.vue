@@ -19,8 +19,14 @@
 	}
 	const props = defineProps<TableModel>();
 
+	//Functions
 	function editPassword(id: string) {
 		router.push("/updatepassword/" + id);
+	}
+	
+	function deletePassword(id: string) {
+		componentStore.idPassword = id;
+		componentStore.showDeletePopup = !componentStore.showDeletePopup;
 	}
 </script>
 <template>
@@ -54,11 +60,7 @@
 					<td><button class="btn btn-primary w-100">🔍</button></td>
 					<td>
 						<Button
-							:fn-button="
-								() =>
-									(componentStore.showDeletePopup =
-										!componentStore.showDeletePopup)
-							"
+							:fn-button="() => deletePassword(data.id)"
 							class="btn btn-fifth w-100"
 							:type="'button'"
 							>❌</Button

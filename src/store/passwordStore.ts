@@ -12,13 +12,19 @@ import {
 	doc,
 	getDoc,
 	updateDoc,
+	deleteDoc,
 } from "firebase/firestore";
 
 //Utils
 import { Utils } from "../utils/utils";
 import router from "../router";
 
+//Store
+import { useComponentStore } from "./componentStore";
+
 export const usePasswordStore = defineStore("passwordStore", () => {
+	let componentStore = useComponentStore();
+
 	/**ACTIONS */
 	async function populateTable(dbData: PswDBModel[]): Promise<PswDBModel[]> {
 		try {
@@ -81,5 +87,21 @@ export const usePasswordStore = defineStore("passwordStore", () => {
 		}
 	}
 
-	return { populateTable, addNewPassword, getDocument, updatePassword };
+	async function deletePassword(): Promise<void> {
+		try {
+			await deleteDoc(doc(db, "Container-Pass", componentStore.idPassword));
+		} catch (e) {
+			throw e;
+		}
+
+		componentStore.showDeletePopup = !componentStore.showDeletePopup;
+	}
+
+	return {
+		populateTable,
+		addNewPassword,
+		getDocument,
+		updatePassword,
+		deletePassword,
+	};
 });

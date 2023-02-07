@@ -13,6 +13,9 @@
 
 	//Store
 	import { useComponentStore } from "../store/componentStore";
+	import { usePasswordStore } from "../store/passwordStore";
+
+	const passwordStore = usePasswordStore();
 	const componentStore = useComponentStore();
 
 	//Async Components
@@ -34,6 +37,7 @@
 	}
 
 	function closeModal() {
+		componentStore.idPassword = "";
 		componentStore.showDeletePopup = !componentStore.showDeletePopup;
 	}
 </script>
@@ -42,7 +46,7 @@
 		<template v-if="componentStore.showDeletePopup">
 			<Modal
 				:error-function="closeModal"
-				:succ-function="() => null"
+				:succ-function="passwordStore.deletePassword"
 				:title="'ATTENTION'"
 			>
 				Do you want delete this row?</Modal
