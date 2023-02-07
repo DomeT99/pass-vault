@@ -1,6 +1,6 @@
 <script setup lang="ts">
 	/**Section that is loaded asynchronously in Home views*/
-	import { onMounted, ref, reactive } from "vue";
+	import { onMounted, reactive } from "vue";
 
 	//Components
 	import Table from "./Table.vue";

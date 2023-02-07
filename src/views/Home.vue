@@ -1,6 +1,6 @@
 <script setup lang="ts">
 	//Vue native modules
-	import { computed, defineAsyncComponent, ref, inject } from "vue";
+	import { computed, defineAsyncComponent, ref } from "vue";
 
 	//Components
 	import Layout from "../layout/Default.vue";
@@ -11,7 +11,9 @@
 	//Router
 	import router from "../router";
 
-	const showPopup = ref(true);
+	//Store
+	import { useComponentStore } from "../store/componentStore";
+	const componentStore = useComponentStore();
 
 	//Async Components
 	const Table = defineAsyncComponent({
@@ -30,11 +32,21 @@
 	function switchPassView() {
 		router.push("addpassword");
 	}
+
+	function closeModal() {
+		componentStore.showDeletePopup = !componentStore.showDeletePopup;
+	}
 </script>
 <template>
 	<Layout>
-		<template v-if="showPopup">
-			<Modal :title="'ATTENTION'"> Do you want delete this row?</Modal>
+		<template v-if="componentStore.showDeletePopup">
+			<Modal
+				:error-function="closeModal"
+				:succ-function="() => null"
+				:title="'ATTENTION'"
+			>
+				Do you want delete this row?</Modal
+			>
 		</template>
 
 		<Table />

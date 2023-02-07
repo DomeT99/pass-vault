@@ -22,10 +22,16 @@
 					<p><slot></slot></p>
 				</div>
 				<div class="modal-footer d-flex justify-content-center">
-					<Button :fn-button="() => props.errorFunction" class="btn-fifth" :type="'button'"
+					<Button
+						:fn-button="props.errorFunction"
+						class="btn-fifth"
+						:type="'button'"
 						>No</Button
 					>
-					<Button :fn-button="() => props.succFunction" class="btn-primary" :type="'button'"
+					<Button
+						:fn-button="() => props.succFunction"
+						class="btn-primary"
+						:type="'button'"
 						>Yes</Button
 					>
 				</div>

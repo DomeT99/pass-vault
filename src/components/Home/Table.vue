@@ -1,6 +1,4 @@
 <script setup lang="ts">
-	import { provide } from "vue";
-
 	//Modules
 	import { DataJsonType } from "../../modules/types";
 
@@ -9,6 +7,10 @@
 
 	//Components
 	import Button from "../common/Button.vue";
+
+	//Store
+	import { useComponentStore } from "../../store/componentStore";
+	const componentStore = useComponentStore();
 
 	//Interface to describe the component's props
 	interface TableModel {
@@ -52,7 +54,11 @@
 					<td><button class="btn btn-primary w-100">🔍</button></td>
 					<td>
 						<Button
-							:fn-button="() => provide('showModal', true)"
+							:fn-button="
+								() =>
+									(componentStore.showDeletePopup =
+										!componentStore.showDeletePopup)
+							"
 							class="btn btn-fifth w-100"
 							:type="'button'"
 							>❌</Button
