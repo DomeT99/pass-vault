@@ -14,12 +14,12 @@ const routes = [
   {
     path: "/addpassword",
     name: "addpassword",
-    component: () => import("../views/AddPassword.vue"),
+    component: () => import("../views/HandlePassword.vue"),
   },
   {
     path: "/updatepassword/:id",
     name: "updatepassword",
-    component: () => import("../views/AddPassword.vue"),
+    component: () => import("../views/HandlePassword.vue"),
   },
 ];
 
