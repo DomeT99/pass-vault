@@ -2,8 +2,11 @@ import { defineStore } from "pinia";
 //Vue modules
 import { reactive } from "vue";
 
+//Third Part library Lodash
+import _ from "lodash";
+
 //Modules
-import { PswDBModel } from "../modules/models";
+import { PswDBModel, FilterModel } from "../modules/models";
 
 //Firebase modules
 import { db } from "../firebase/firebase";
@@ -103,12 +106,46 @@ export const usePasswordStore = defineStore("passwordStore", () => {
     return true;
   }
 
+  async function filterData(filterValue: FilterModel) {
+    try {
+      const passwordCollection = collection(db, "Container-Pass");
+
+      const queryToSearch = Utils.composeQuery(
+        filterValue,
+        passwordCollection
+      ); 
+      
+      if (queryToSearch != null) {
+        const querySnapshot = await getDocs(queryToSearch!);
+
+        _.remove(dbData, () => []);
+
+        querySnapshot.forEach((doc) => {
+          let dataFirebase = {
+            id: doc.data().id,
+            description: doc.data().description,
+            site: doc.data().site,
+            username: doc.data().username,
+            password: doc.data().password,
+          } satisfies PswDBModel;
+
+          dbData.push(dataFirebase);
+        });
+      } else {
+        _.remove(dbData, () => []);
+        await populateTable(dbData);
+      }
+    } catch (e) {
+      throw e;
+    }
+  }
   return {
     populateTable,
     addNewPassword,
     getDocument,
     updatePassword,
     deletePassword,
-    dbData
+    filterData,
+    dbData,
   };
 });

@@ -1,4 +1,11 @@
-import { PswDBModel } from "../modules/models";
+import {
+  CollectionReference,
+  DocumentData,
+  query,
+  where,
+} from "firebase/firestore";
+
+import { PswDBModel, FilterModel } from "../modules/models";
 
 export class Utils {
   static checkForm(dataForm: PswDBModel): boolean {
@@ -19,5 +26,31 @@ export class Utils {
     }
 
     return true;
+  }
+
+  static composeQuery(
+    filterValue: FilterModel,
+    passwordCollection: CollectionReference<DocumentData>
+  ) {
+    if (filterValue.site === "" && filterValue.username === "") {
+      return null;
+    }
+
+    if (filterValue.site === "") {
+      return query(
+        passwordCollection,
+        where("username", "==", filterValue.username)
+      );
+    }
+
+    if (filterValue.username === "") {
+      return query(passwordCollection, where("site", "==", filterValue.site));
+    }
+
+    return query(
+      passwordCollection,
+      where("site", "==", filterValue.site),
+      where("username", "==", filterValue.username)
+    );
   }
 }

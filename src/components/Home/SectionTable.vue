@@ -12,6 +12,8 @@ import { PswDBModel } from "../../modules/models";
 //Third Part Library
 import _ from "lodash";
 
+import { usePasswordStore } from "../../store/passwordStore";
+let passwordStore = usePasswordStore();
 
 interface SectionTable {
   dbData: PswDBModel[];
@@ -22,12 +24,11 @@ const props = defineProps<SectionTable>();
 let idTable: string = _.uniqueId("");
 
 let isDbDataComputed = computed(() => props.dbData) as unknown as PswDBModel[];
-
 </script>
 
 <template>
   <section class="container pt-10 fade-in">
-    <Filter />
+    <Filter :filter-fn="passwordStore.filterData"/>
   </section>
   <section class="container pt-5 fade-in table-responsive">
     <Table :id="idTable" :data-json="isDbDataComputed" />
