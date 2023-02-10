@@ -6,13 +6,13 @@ import { PswDBModel } from "../modules/models";
 //Firebase modules
 import { db } from "../firebase/firebase";
 import {
-	collection,
-	getDocs,
-	setDoc,
-	doc,
-	getDoc,
-	updateDoc,
-	deleteDoc,
+  collection,
+  getDocs,
+  setDoc,
+  doc,
+  getDoc,
+  updateDoc,
+  deleteDoc,
 } from "firebase/firestore";
 
 //Utils
@@ -23,85 +23,86 @@ import router from "../router";
 import { useComponentStore } from "./componentStore";
 
 export const usePasswordStore = defineStore("passwordStore", () => {
-	let componentStore = useComponentStore();
+  let componentStore = useComponentStore();
 
-	/**ACTIONS */
-	async function populateTable(dbData: PswDBModel[]): Promise<PswDBModel[]> {
-		try {
-			const querySnapshot = await getDocs(collection(db, "Container-Pass"));
+  /**ACTIONS */
+  async function populateTable(dbData: PswDBModel[]): Promise<PswDBModel[]> {
+    try {
+      const querySnapshot = await getDocs(collection(db, "Container-Pass"));
 
-			querySnapshot.forEach((doc) => {
-				let dataFirebase = {
-					id: doc.data().id,
-					description: doc.data().description,
-					site: doc.data().site,
-					username: doc.data().username,
-					password: doc.data().password,
-				} satisfies PswDBModel;
+      querySnapshot.forEach((doc) => {
+        let dataFirebase = {
+          id: doc.data().id,
+          description: doc.data().description,
+          site: doc.data().site,
+          username: doc.data().username,
+          password: doc.data().password,
+        } satisfies PswDBModel;
 
-				dbData.push(dataFirebase);
-			});
-			return dbData;
-		} catch (e) {
-			throw e;
-		}
-	}
+        dbData.push(dataFirebase);
+      });
+      return dbData;
+    } catch (e) {
+      throw e;
+    }
+  }
 
-	async function addNewPassword(newPassword: PswDBModel): Promise<void> {
-		try {
-			if (Utils.checkForm(newPassword)) {
-				await setDoc(doc(db, "Container-Pass", newPassword.id), newPassword);
-				router.push("/");
-			}
-		} catch (e) {
-			throw e;
-		}
-	}
+  async function addNewPassword(newPassword: PswDBModel): Promise<void> {
+    try {
+      if (Utils.checkForm(newPassword)) {
+        await setDoc(doc(db, "Container-Pass", newPassword.id), newPassword);
+        router.push("/");
+      }
+    } catch (e) {
+      throw e;
+    }
+  }
 
-	async function getDocument(id: string): Promise<PswDBModel> {
-		const docRef = doc(db, "Container-Pass", id);
-		const docSnap = await getDoc(docRef);
+  async function getDocument(id: string): Promise<PswDBModel> {
+    const docRef = doc(db, "Container-Pass", id);
+    const docSnap = await getDoc(docRef);
 
-		if (docSnap.exists()) {
-			return docSnap.data() as PswDBModel;
-		} else {
-			throw new Error("The document doesn't exist.");
-		}
-	}
+    if (docSnap.exists()) {
+      return docSnap.data() as PswDBModel;
+    } else {
+      throw new Error("The document doesn't exist.");
+    }
+  }
 
-	async function updatePassword(changePassword: PswDBModel): Promise<void> {
-		try {
-			const docRef = doc(db, "Container-Pass", changePassword.id);
+  async function updatePassword(changePassword: PswDBModel): Promise<void> {
+    try {
+      const docRef = doc(db, "Container-Pass", changePassword.id);
 
-			// Set the "capital" field of the city 'DC'
-			await updateDoc(docRef, {
-				id: changePassword.id,
-				username: changePassword.username,
-				site: changePassword.site,
-				description: changePassword.description,
-				password: changePassword.password,
-			});
-			router.push("/");
-		} catch (e) {
-			throw e;
-		}
-	}
+      // Set the "capital" field of the city 'DC'
+      await updateDoc(docRef, {
+        id: changePassword.id,
+        username: changePassword.username,
+        site: changePassword.site,
+        description: changePassword.description,
+        password: changePassword.password,
+      });
+      router.push("/");
+    } catch (e) {
+      throw e;
+    }
+  }
 
-	async function deletePassword(): Promise<void> {
-		try {
-			await deleteDoc(doc(db, "Container-Pass", componentStore.idPassword));
-		} catch (e) {
-			throw e;
-		}
+  async function deletePassword(): Promise<boolean> {
+    try {
+      await deleteDoc(doc(db, "Container-Pass", componentStore.idPassword));
+    } catch (e) {
+      throw e;
+    }
 
-		componentStore.showDeletePopup = !componentStore.showDeletePopup;
-	}
+    componentStore.showDeletePopup = !componentStore.showDeletePopup;
+    return true;
+  }
 
-	return {
-		populateTable,
-		addNewPassword,
-		getDocument,
-		updatePassword,
-		deletePassword,
-	};
+  return {
+    populateTable,
+    addNewPassword,
+    getDocument,
+    updatePassword,
+    deletePassword,
+  };
 });
