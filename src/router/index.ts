@@ -21,6 +21,11 @@ const routes = [
     name: "updatepassword",
     component: () => import("../views/HandlePassword.vue"),
   },
+  {
+    path: "/details/:id",
+    name: "details",
+    component: () => import("../views/HandlePassword.vue"),
+  },
 ];
 
 const router = createRouter({

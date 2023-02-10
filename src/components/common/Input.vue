@@ -11,6 +11,7 @@ interface InputModel {
   type?: InputType;
   id?: string;
   placeHolder?: string;
+  disable?: boolean;
   value: string;
 }
 
