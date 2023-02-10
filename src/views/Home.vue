@@ -1,6 +1,6 @@
 <script setup lang="ts">
 //Vue native modules
-import { computed, defineAsyncComponent, onMounted, reactive } from "vue";
+import { computed, defineAsyncComponent, onMounted } from "vue";
 
 //Components
 import Layout from "../layout/Default.vue";
@@ -14,17 +14,12 @@ import router from "../router";
 //Store
 import { useComponentStore } from "../store/componentStore";
 import { usePasswordStore } from "../store/passwordStore";
-import { PswDBModel } from "../modules/models";
 
-//Lodash
+//Third Part library Lodash
 import _ from "lodash";
 
 const passwordStore = usePasswordStore();
 const componentStore = useComponentStore();
-
-
-//Data
-let dbData: PswDBModel[] = reactive([]);
 
 //Async Components
 const Table = defineAsyncComponent({
@@ -42,7 +37,10 @@ const btnIcon = computed(() => {
 //Hooks
 onMounted(async () => {
   try {
-    dbData = await passwordStore.populateTable(dbData);
+    _.remove(passwordStore.dbData, () => []);
+    passwordStore.dbData = await passwordStore.populateTable(
+      passwordStore.dbData
+    );
   } catch (e) {
     throw e;
   }
@@ -63,9 +61,11 @@ async function deletePassword() {
     let isDelete = await passwordStore.deletePassword();
 
     if (isDelete) {
-      _.remove(dbData, () => []);
+      _.remove(passwordStore.dbData, () => []);
 
-      dbData = await passwordStore.populateTable(dbData);
+      passwordStore.dbData = await passwordStore.populateTable(
+        passwordStore.dbData
+      );
     }
   } catch (e) {
     throw e;
@@ -84,7 +84,7 @@ async function deletePassword() {
       >
     </template>
 
-    <Table :db-data="dbData" />
+    <Table :db-data="passwordStore.dbData" />
     <section class="button-bar">
       <Button
         :fn-button="switchPassView"

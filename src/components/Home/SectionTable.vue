@@ -12,10 +12,6 @@ import { PswDBModel } from "../../modules/models";
 //Third Part Library
 import _ from "lodash";
 
-//Store
-import { usePasswordStore } from "../../store/passwordStore";
-
-const pswStore = usePasswordStore();
 
 interface SectionTable {
   dbData: PswDBModel[];

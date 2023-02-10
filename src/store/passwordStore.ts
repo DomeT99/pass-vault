@@ -1,4 +1,6 @@
 import { defineStore } from "pinia";
+//Vue modules
+import { reactive } from "vue";
 
 //Modules
 import { PswDBModel } from "../modules/models";
@@ -24,6 +26,9 @@ import { useComponentStore } from "./componentStore";
 
 export const usePasswordStore = defineStore("passwordStore", () => {
   let componentStore = useComponentStore();
+
+  /**STATE */
+  let dbData: PswDBModel[] = reactive([]);
 
   /**ACTIONS */
   async function populateTable(dbData: PswDBModel[]): Promise<PswDBModel[]> {
@@ -104,5 +109,6 @@ export const usePasswordStore = defineStore("passwordStore", () => {
     getDocument,
     updatePassword,
     deletePassword,
+    dbData
   };
 });
