@@ -41,6 +41,7 @@ let password: PswDBModel = reactive({
 });
 
 let isDisabled = ref(false);
+let isDisabledId = ref(false);
 
 //Computed Props
 const btnIcon = computed(() => {
@@ -76,6 +77,7 @@ onMounted(async () => {
       password.description = document.description;
       password.password = document.password;
     }
+    isDisabledId.value = true;
   } else if (
     route.params.id !== null &&
     typeof route.params.id === "string" &&
@@ -91,6 +93,7 @@ onMounted(async () => {
       password.password = document.password;
     }
     isDisabled.value = true;
+    isDisabledId.value = true;
   }
 });
 </script>
@@ -102,7 +105,7 @@ onMounted(async () => {
         <div class="row d-flex justify-content-center g-4">
           <div class="col-sm-3 col-lg-1">
             <Input
-              :disabled="isDisabled"
+              :disabled="isDisabledId"
               :value="password.id"
               :place-holder="'Id'"
               class="form-control form-control-lg addpsw"
