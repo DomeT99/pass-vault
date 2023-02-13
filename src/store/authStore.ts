@@ -3,7 +3,7 @@ import { defineStore } from "pinia";
 import { LoginModel } from "../modules/models";
 
 //Firebase
-import { signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { signInWithEmailAndPassword, signOut, User } from "firebase/auth";
 import { auth } from "../firebase/firebase";
 
 //Router
@@ -15,6 +15,7 @@ export const useLoginStore = defineStore("authStore", () => {
       signInWithEmailAndPassword(auth, loginParams.email, loginParams.password)
         .then(() => {
           router.push("home");
+          console.log(auth.currentUser);
         })
         .catch((error) => {
           throw error;
@@ -37,5 +38,9 @@ export const useLoginStore = defineStore("authStore", () => {
       throw e;
     }
   }
-  return { getLogin, getLogout };
+
+  function verifyUserLog(): User | null {
+    return auth.currentUser;
+  }
+  return { getLogin, getLogout, verifyUserLog };
 });
