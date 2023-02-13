@@ -158,7 +158,10 @@ onMounted(async () => {
           </div>
         </div>
 
-        <div class="row d-flex justify-content-center g-4 pt-5">
+        <div
+          v-if="!isDisabled || !isDisabledId"
+          class="row d-flex justify-content-center g-4 pt-5"
+        >
           <div class="col-sm-12 col-lg-4 col-md-6">
             <Button
               :fn-button="resetForm"
