@@ -22,3 +22,20 @@
 body{
   font-family: var(--font-regular);
 }
+
+/*ScrollBar*/
+/* width */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--third-color);
+  border-radius: 10px;
+}

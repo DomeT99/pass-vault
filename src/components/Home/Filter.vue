@@ -20,6 +20,12 @@ let filterValue: FilterModel = reactive({
   site: "",
   username: "",
 });
+
+//Functions
+function resetFilter() {
+  filterValue.site = "";
+  filterValue.username = "";
+}
 </script>
 <template>
   <section class="row g-4">
@@ -39,7 +45,15 @@ let filterValue: FilterModel = reactive({
         v-model="filterValue.username"
       />
     </div>
-    <div class="col-md-3 col-lg-2 col-sm-3">
+    <div class="col-md-2 col-lg-1 col-sm-3">
+      <Button
+        :fn-button="resetFilter"
+        class="btn-fourth w-100 text-black"
+        :type="'button'"
+        >Reset</Button
+      >
+    </div>
+    <div class="col-md-2 col-lg-1 col-sm-3">
       <Button
         :fn-button="() => props.filterFn(filterValue)"
         class="btn-fifth w-100"
