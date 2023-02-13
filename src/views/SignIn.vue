@@ -1,9 +1,24 @@
 <script setup lang="ts">
+import { reactive } from "vue";
+
 //Components
 import Form from "../components/common/Form.vue";
 import Input from "../components/common/Input.vue";
 import Label from "../components/common/Label.vue";
 import Button from "../components/common/Button.vue";
+
+//Modules
+import { LoginModel } from "../modules/models";
+
+//Store
+import { useLoginStore } from "../store/authStore";
+
+const loginStore = useLoginStore();
+
+const loginData: LoginModel = reactive({
+  email: "",
+  password: "",
+});
 </script>
 <template>
   <section class="bg-primary min-vh-100 v-align-center">
@@ -15,10 +30,11 @@ import Button from "../components/common/Button.vue";
               Email
             </Label>
             <Input
-              :value="'Default Value'"
+              :value="loginData.email"
               class="form-control"
               :id="'email-input'"
               :type="'email'"
+              v-model="loginData.email"
             />
           </div>
           <div class="mb-4">
@@ -26,15 +42,16 @@ import Button from "../components/common/Button.vue";
               Password
             </Label>
             <Input
-              :value="'Default Value'"
+              :value="loginData.password"
               class="form-control"
               :id="'password-input'"
               :type="'password'"
+              v-model="loginData.password"
             />
           </div>
           <div class="justify-content-center d-flex">
             <Button
-              :fn-button="() => null"
+              :fn-button="() => loginStore.getLogin(loginData)"
               class="btn-fifth w-100"
               :type="'submit'"
               >Login</Button

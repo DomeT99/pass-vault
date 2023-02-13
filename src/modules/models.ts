@@ -8,3 +8,8 @@ export interface FilterModel {
   username: string;
   site: string;
 }
+
+export interface LoginModel {
+  email: string;
+  password: string;
+}
