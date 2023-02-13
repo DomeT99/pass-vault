@@ -12,6 +12,7 @@ import { PswDBModel } from "../../modules/models";
 //Third Part Library
 import _ from "lodash";
 
+//Store
 import { usePasswordStore } from "../../store/passwordStore";
 let passwordStore = usePasswordStore();
 
@@ -21,8 +22,10 @@ interface SectionTable {
 
 const props = defineProps<SectionTable>();
 
+//Data
 let idTable: string = _.uniqueId("");
 
+//Computed
 let isDbDataComputed = computed(() => props.dbData) as unknown as PswDBModel[];
 </script>
 

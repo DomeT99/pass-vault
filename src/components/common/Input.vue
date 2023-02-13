@@ -7,7 +7,7 @@
 import { InputType } from "../../modules/types";
 
 //Interface to describe the component's props
-interface InputModel {
+interface Input {
   type?: InputType;
   id?: string;
   placeHolder?: string;
@@ -19,7 +19,7 @@ interface InputModel {
 defineEmits(["update:modelValue"]);
 
 //Instance of props
-const props = defineProps<InputModel>();
+const props = defineProps<Input>();
 </script>
 
 <template>

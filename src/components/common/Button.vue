@@ -5,13 +5,13 @@
 import { ButtonType } from '../../modules/types'
 
 //Interface to describe the component's props
-interface ButtonModel<T> {
+interface Button<T> {
     fnButton(params?: T): T;
     type: ButtonType;
 }
 
 //Instance of props
-const props = defineProps<ButtonModel<unknown>>();
+const props = defineProps<Button<unknown>>();
 </script>
 <template>
 

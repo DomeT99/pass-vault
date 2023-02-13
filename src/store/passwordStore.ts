@@ -18,10 +18,14 @@ import {
   getDoc,
   updateDoc,
   deleteDoc,
+  QueryDocumentSnapshot,
+  DocumentData,
 } from "firebase/firestore";
 
 //Utils
 import { Utils } from "../utils/utils";
+
+//Router
 import router from "../router";
 
 //Store
@@ -106,15 +110,12 @@ export const usePasswordStore = defineStore("passwordStore", () => {
     return true;
   }
 
-  async function filterData(filterValue: FilterModel) {
+  async function filterData(filterValue: FilterModel): Promise<void> {
     try {
       const passwordCollection = collection(db, "Container-Pass");
 
-      const queryToSearch = Utils.composeQuery(
-        filterValue,
-        passwordCollection
-      ); 
-      
+      const queryToSearch = Utils.composeQuery(filterValue, passwordCollection);
+
       if (queryToSearch != null) {
         const querySnapshot = await getDocs(queryToSearch!);
 

@@ -10,12 +10,11 @@ import { auth } from "../firebase/firebase";
 import router from "../router";
 
 export const useLoginStore = defineStore("authStore", () => {
-  function getLogin(loginParams: LoginModel) {
+  function getLogin(loginParams: LoginModel): void {
     if (loginParams.email != "" && loginParams.password != "") {
       signInWithEmailAndPassword(auth, loginParams.email, loginParams.password)
         .then(() => {
           router.push("home");
-          console.log(auth.currentUser);
         })
         .catch((error) => {
           throw error;
@@ -25,18 +24,14 @@ export const useLoginStore = defineStore("authStore", () => {
     }
   }
 
-  function getLogout() {
-    try {
-      signOut(auth)
-        .then(() => {
-          router.push("/");
-        })
-        .catch((error) => {
-          throw error;
-        });
-    } catch (e) {
-      throw e;
-    }
+  function getLogout(): void {
+    signOut(auth)
+      .then(() => {
+        router.push("/");
+      })
+      .catch((error) => {
+        throw error;
+      });
   }
 
   function verifyUserLog(): User | null {

@@ -31,6 +31,7 @@ const Form = defineAsyncComponent({
 //Istance of router
 const route = useRoute();
 
+//data
 let password: PswDBModel = reactive({
   id: "",
   username: "",
@@ -46,6 +47,7 @@ const btnIcon = computed(() => {
   return new URL("../assets/images/arrow-left-solid.svg", import.meta.url).href;
 });
 
+//Functions
 function returnHomePage() {
   router.push("/home");
 }
@@ -58,6 +60,7 @@ function resetForm() {
   password.password = "";
 }
 
+//Hooks
 onMounted(async () => {
   if (
     route.params.id !== null &&

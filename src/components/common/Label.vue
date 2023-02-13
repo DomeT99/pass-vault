@@ -2,11 +2,11 @@
 /**Generic label component */
 
 //Interface to describe the component's props
-interface LabelModel {
+interface Label {
     for?: string;
 }
 
-const props = defineProps<LabelModel>();
+const props = defineProps<Label>();
 </script>
 <template>
     <label :for="props.for">

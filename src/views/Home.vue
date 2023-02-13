@@ -19,6 +19,7 @@ import { useLoginStore } from "../store/authStore";
 //Third Part library Lodash
 import _ from "lodash";
 
+//Instance of stores
 const passwordStore = usePasswordStore();
 const componentStore = useComponentStore();
 const loginStore = useLoginStore();

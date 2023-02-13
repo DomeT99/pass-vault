@@ -2,14 +2,14 @@
 // @ts-nocheck
 
 //Interface to describe the component's props
-interface TextareaModel {
+interface Textarea {
   placeHolder?: string;
   rows?: number;
   resize?: boolean;
   value: string;
 }
 
-const props = defineProps<TextareaModel>();
+const props = defineProps<Textarea>();
 
 //Instance of the value emitted to the parent component
 defineEmits(["update:modelValue"]);
