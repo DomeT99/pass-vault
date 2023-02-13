@@ -14,12 +14,14 @@ import router from "../router";
 //Store
 import { useComponentStore } from "../store/componentStore";
 import { usePasswordStore } from "../store/passwordStore";
+import { useLoginStore } from "../store/authStore";
 
 //Third Part library Lodash
 import _ from "lodash";
 
 const passwordStore = usePasswordStore();
 const componentStore = useComponentStore();
+const loginStore = useLoginStore();
 
 //Async Components
 const Table = defineAsyncComponent({
@@ -33,7 +35,9 @@ const Table = defineAsyncComponent({
 const btnIcon = computed(() => {
   return new URL("../assets/images/plus-solid.svg", import.meta.url).href;
 });
-
+const logoutIcon = computed(() => {
+  return new URL("../assets/images/door-open-solid.svg", import.meta.url).href;
+});
 //Hooks
 onMounted(async () => {
   try {
@@ -87,6 +91,13 @@ async function deletePassword() {
     <Table :db-data="passwordStore.dbData" />
     <section class="button-bar">
       <Button
+        :fn-button="loginStore.getLogout"
+        class="btn-fifth btn-pad"
+        :type="'button'"
+        ><img :src="logoutIcon" width="25" height="25"
+      /></Button>
+      <hr class="opacity-0">
+      <Button
         :fn-button="switchPassView"
         class="btn-secondary btn-pad"
         :type="'button'"
@@ -101,5 +112,10 @@ async function deletePassword() {
   position: fixed;
   bottom: 0;
   right: 0;
+  display: flex;
+  flex-direction: column;
+}
+.opacity-0{
+  opacity: 0;
 }
 </style>
