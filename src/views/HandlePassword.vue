@@ -47,7 +47,7 @@ const btnIcon = computed(() => {
 });
 
 function returnHomePage() {
-  router.push("/");
+  router.push("/home");
 }
 
 function resetForm() {

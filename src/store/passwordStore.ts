@@ -59,7 +59,7 @@ export const usePasswordStore = defineStore("passwordStore", () => {
     try {
       if (Utils.checkForm(newPassword)) {
         await setDoc(doc(db, "Container-Pass", newPassword.id), newPassword);
-        router.push("/");
+        router.push("/home");
       }
     } catch (e) {
       throw e;
@@ -89,7 +89,7 @@ export const usePasswordStore = defineStore("passwordStore", () => {
         description: changePassword.description,
         password: changePassword.password,
       });
-      router.push("/");
+      router.push("/home");
     } catch (e) {
       throw e;
     }
