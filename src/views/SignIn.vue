@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 
 //Components
 import Form from "../components/common/Form.vue";
@@ -15,10 +15,23 @@ import { useLoginStore } from "../store/authStore";
 
 const loginStore = useLoginStore();
 
+//Data
 const loginData: LoginModel = reactive({
   email: "",
   password: "",
 });
+const isValidMail = ref(false);
+const isValidPassword = ref(false);
+
+//Functions
+function getLogin() {
+  let isValidLogin = loginStore.getLogin(loginData);
+
+  if (!isValidLogin) {
+    isValidMail.value = true;
+    isValidPassword.value = true;
+  }
+}
 </script>
 <template>
   <section class="bg-primary min-vh-100 v-align-center">
@@ -36,6 +49,13 @@ const loginData: LoginModel = reactive({
               :type="'email'"
               v-model="loginData.email"
             />
+            <Label
+              v-if="isValidMail"
+              :for="'email-input'"
+              class="form-label text-danger"
+            >
+              Enter a valid email
+            </Label>
           </div>
           <div class="mb-4">
             <Label :for="'password-input'" class="form-label text-white">
@@ -48,10 +68,17 @@ const loginData: LoginModel = reactive({
               :type="'password'"
               v-model="loginData.password"
             />
+            <Label
+              v-if="isValidPassword"
+              :for="'email-input'"
+              class="form-label text-danger"
+            >
+              Enter your password
+            </Label>
           </div>
           <div class="justify-content-center d-flex">
             <Button
-              :fn-button="() => loginStore.getLogin(loginData)"
+              :fn-button="getLogin"
               class="btn-fifth w-100"
               :type="'submit'"
               >Login</Button

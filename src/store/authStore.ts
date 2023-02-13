@@ -10,17 +10,18 @@ import { auth } from "../firebase/firebase";
 import router from "../router";
 
 export const useLoginStore = defineStore("authStore", () => {
-  function getLogin(loginParams: LoginModel): void {
+  function getLogin(loginParams: LoginModel) {
     if (loginParams.email != "" && loginParams.password != "") {
       signInWithEmailAndPassword(auth, loginParams.email, loginParams.password)
         .then(() => {
           router.push("home");
+          return true;
         })
         .catch((error) => {
           throw error;
         });
     } else {
-      alert("NO");
+      return false;
     }
   }
 

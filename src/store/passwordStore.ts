@@ -17,9 +17,7 @@ import {
   doc,
   getDoc,
   updateDoc,
-  deleteDoc,
-  QueryDocumentSnapshot,
-  DocumentData,
+  deleteDoc
 } from "firebase/firestore";
 
 //Utils
