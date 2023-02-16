@@ -107,7 +107,7 @@ async function deletePassword() {
       /></Button>
     </section>
 
-    <template v-if="false">
+    <template v-if="componentStore.isShowToast">
       <Toast />
     </template>
   </Layout>

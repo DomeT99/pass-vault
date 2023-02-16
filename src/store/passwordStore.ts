@@ -17,7 +17,7 @@ import {
   doc,
   getDoc,
   updateDoc,
-  deleteDoc
+  deleteDoc,
 } from "firebase/firestore";
 
 //Utils
@@ -53,6 +53,7 @@ export const usePasswordStore = defineStore("passwordStore", () => {
       });
       return dbData;
     } catch (e) {
+      componentStore.isShowToast = !componentStore.isShowToast;
       throw e;
     }
   }
@@ -64,18 +65,24 @@ export const usePasswordStore = defineStore("passwordStore", () => {
         router.push("/home");
       }
     } catch (e) {
+      componentStore.isShowToast = !componentStore.isShowToast;
       throw e;
     }
   }
 
-  async function getDocument(id: string): Promise<PswDBModel> {
-    const docRef = doc(db, "Container-Pass", id);
-    const docSnap = await getDoc(docRef);
+  async function getDocument(id: string): Promise<PswDBModel | undefined> {
+    try {
+      const docRef = doc(db, "Container-Pass", id);
+      const docSnap = await getDoc(docRef);
 
-    if (docSnap.exists()) {
-      return docSnap.data() as PswDBModel;
-    } else {
-      throw new Error("The document doesn't exist.");
+      if (docSnap.exists()) {
+        return docSnap.data() as PswDBModel;
+      } else {
+        throw new Error("The document doesn't exist.");
+      }
+    } catch (e) {
+      componentStore.isShowToast = !componentStore.isShowToast;
+      throw e;
     }
   }
 
@@ -93,6 +100,7 @@ export const usePasswordStore = defineStore("passwordStore", () => {
       });
       router.push("/home");
     } catch (e) {
+      componentStore.isShowToast = !componentStore.isShowToast;
       throw e;
     }
   }
@@ -101,6 +109,7 @@ export const usePasswordStore = defineStore("passwordStore", () => {
     try {
       await deleteDoc(doc(db, "Container-Pass", componentStore.idPassword));
     } catch (e) {
+      componentStore.isShowToast = !componentStore.isShowToast;
       throw e;
     }
 
@@ -135,9 +144,11 @@ export const usePasswordStore = defineStore("passwordStore", () => {
         await populateTable(dbData);
       }
     } catch (e) {
+      componentStore.isShowToast = !componentStore.isShowToast;
       throw e;
     }
   }
+  
   return {
     populateTable,
     addNewPassword,

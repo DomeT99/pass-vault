@@ -25,6 +25,7 @@ let filterValue: FilterModel = reactive({
 function resetFilter() {
   filterValue.site = "";
   filterValue.username = "";
+  props.filterFn(filterValue);
 }
 </script>
 <template>
