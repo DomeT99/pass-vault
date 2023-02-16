@@ -24,10 +24,10 @@ const isValidMail = ref(false);
 const isValidPassword = ref(false);
 
 //Functions
-function getLogin() {
-  let isValidLogin = loginStore.getLogin(loginData);
+async function getLogin() {
+  let isValidLogin = await loginStore.getLogin(loginData);
 
-  if (!isValidLogin) {
+  if (!isValidLogin || isValidLogin === undefined) {
     isValidMail.value = true;
     isValidPassword.value = true;
   }

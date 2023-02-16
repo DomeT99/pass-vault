@@ -10,16 +10,21 @@ import { auth } from "../firebase/firebase";
 import router from "../router";
 
 export const useLoginStore = defineStore("authStore", () => {
-  function getLogin(loginParams: LoginModel) {
+  async function getLogin(loginParams: LoginModel) {
     if (loginParams.email != "" && loginParams.password != "") {
-      signInWithEmailAndPassword(auth, loginParams.email, loginParams.password)
+      await signInWithEmailAndPassword(
+        auth,
+        loginParams.email,
+        loginParams.password
+      )
         .then(() => {
           router.push("home");
-          return true;
         })
-        .catch((error) => {
-          throw error;
+        .catch(() => {
+          return false;
         });
+
+      return true;
     } else {
       return false;
     }
