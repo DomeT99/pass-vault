@@ -7,6 +7,7 @@ import Layout from "../layout/Default.vue";
 import Button from "../components/common/Button.vue";
 import Loading from "../components/common/Loading.vue";
 import Modal from "../components/common/Modal.vue";
+import Toast from "../components/common/Toast.vue";
 
 //Router
 import router from "../router";
@@ -97,7 +98,7 @@ async function deletePassword() {
         :type="'button'"
         ><img :src="logoutIcon" width="25" height="25"
       /></Button>
-      <hr class="opacity-0">
+      <hr class="opacity-0" />
       <Button
         :fn-button="switchPassView"
         class="btn-secondary btn-pad"
@@ -105,6 +106,10 @@ async function deletePassword() {
         ><img :src="btnIcon" width="25" height="25"
       /></Button>
     </section>
+
+    <template v-if="false">
+      <Toast />
+    </template>
   </Layout>
 </template>
 <style scoped lang="scss">
@@ -116,7 +121,7 @@ async function deletePassword() {
   display: flex;
   flex-direction: column;
 }
-.opacity-0{
+.opacity-0 {
   opacity: 0;
 }
 </style>

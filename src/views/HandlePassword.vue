@@ -61,8 +61,7 @@ function resetForm() {
   password.password = "";
 }
 
-//Hooks
-onMounted(async () => {
+async function populateForm() {
   if (
     route.params.id !== null &&
     typeof route.params.id === "string" &&
@@ -95,6 +94,11 @@ onMounted(async () => {
     isDisabled.value = true;
     isDisabledId.value = true;
   }
+}
+
+//Hooks
+onMounted(async () => {
+  await populateForm();
 });
 </script>
 

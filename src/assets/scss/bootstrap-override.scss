@@ -39,6 +39,12 @@
     padding: 10px !important;
   }
 }
+.btn-close:focus {
+  outline: 0;
+  box-shadow: none;
+  opacity: 1;
+}
+
 
 /*Form*/
 .form-control {
@@ -77,10 +83,10 @@
 .table-secondary {
   --bs-table-bg: var(--secondary-color) !important;
   color: var(--white) !important;
-  border: 1px solid var(--black);
+  border: 1px solid gray;
 }
 .table-bordered {
-  border: 2px solid var(--black);
+  border: 1px solid gray;
 }
 
 /*Row*/
@@ -135,4 +141,11 @@
 /*Text*/
 .text-danger{
   color: var(--fourth-color) !important;
+}
+
+
+/*Toast*/
+.toast-header{
+  background-color: var(--fifth-color) !important;
+  color: var(--white);
 }
