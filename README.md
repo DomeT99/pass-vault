@@ -1,6 +1,7 @@
 # Pass-Vault 🌀
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/722ae5c8-0c4b-4a46-9f56-38676598bdb8/deploy-status)](https://app.netlify.com/sites/demo-vault/deploys)
+![Netlify Status](https://api.netlify.com/api/v1/badges/722ae5c8-0c4b-4a46-9f56-38676598bdb8/deploy-status)
+
 
 A **Progressive Web App** (PWA), capable of storing and cataloging your passwords.
 
